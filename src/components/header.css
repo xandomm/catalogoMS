@@ -1,0 +1,23 @@
+.headercolor{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(49,140,231,1) 100%) 
+}
+.navbar-toggler {
+    color: transparent;
+    border-color: rgba(255,255,255,.1);
+}
+
+@media(min-width: 1090px){
+.paginasheader{
+    display: flex;
+    justify-content: flex-end;
+}
+}
+@media(max-width: 1090px){
+    .paginasheader{
+        font-style: white;
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    }
