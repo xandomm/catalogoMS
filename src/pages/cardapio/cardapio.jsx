@@ -2,17 +2,64 @@ import React from 'react';
 import LogoFake from '../../image/restaurante.jpg'
 import './cardapio.css';
 
+
+import Categorias from './Categorias';
+
 import Food from '../../image/food.jpg'
 import Image from '../../image/images.jpg'
 import Image1 from '../../image/images(1).jpg'
 import Image2 from '../../image/restauranted.jpg'
 
 export default (props)=>{
-    return(
+    const abertura = 18.00;
+    const fechamento = 24.00;
+    var d = new Date();
+    var now = d.getHours() + "." + d.getMinutes();
+//Ao conectar com o db essa funcao verificara se o restaurante esta aberto ou nao
+    function abertoFechado(){
+        if(now <= fechamento  && now >= abertura ){
+            return(
+            <a className="Aberto btn">Aberto</a>
+            )
+        
+        }else {
+            return(
+                <a className="Fechado btn"><strong>Fechado</strong></a>
+            )
+
+        }}
+     
+
+
+    var VA = false;
+    function valeAlimentacao(){
+        if(VA === true){
+            return(
+                <div class="alert alert-primary" role="alert">
+  Aceitamos vale alimentação
+</div>
+            )
+        }else{
+            return(
+                <div class="alert alert-success" role="alert">
+  Seja bem vindo!
+</div>
+            )
+        }
+    }
+ 
+   return(
         <div>
+            <div className="Headercardapio">
             <img className="LogoCardapio" src={LogoFake}/>
+            
+            {abertoFechado()}
+            
+            </div>
+            {valeAlimentacao()}
             <div class=" descricaorestaurante">
 {/* descrição do lugar */}
+    
     <div class="col-md-5 col-sm-6 col-xs-12">
     
         <div class="content-part-1-left-h3">Nosso restaurante conta com diversas instalações</div>
@@ -34,65 +81,13 @@ export default (props)=>{
 </div>
             <br/>
 {/* Produtos */}
-            <div class="">
-	<div class="content-part-3">
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        	<div class="row content-part-3-inner">
-                <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                    <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                </div>
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="content-part-3-right-h4">Lorem Ipsum</div>
-                    <div class="price">Preço : <i class="green">55.00</i></div>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    <div class="margin_p3"><a href="#!" class="order-now">Order Now</a></div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        	<div class="row content-part-3-inner">
-                <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                    <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                </div>
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="content-part-3-right-h4">Lorem Ipsum</div>
-                    <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>150.00</i></div>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    <div class="margin_p3"><a href="#!" class="order-now">Order Now</a></div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        	<div class="row content-part-3-inner">
-                <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                    <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                </div>
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="content-part-3-right-h4">Lorem Ipsum</div>
-                    <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>220.00</i></div>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    <div class="margin_p3"><a href="#!" class="order-now">Order Now</a></div>
-                </div>
-            </div>
-        </div>
-        <hr/>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-        	<div class="row content-part-3-inner">
-                <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                    <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                </div>
-                <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="content-part-3-right-h4">Lorem Ipsum</div>
-                    <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>90.00</i></div>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    <div class="margin_p3"><a href="#!" class="order-now">Order Now</a></div>
-                </div>
-            </div>
-        </div> 
-    </div>
-</div>
+
+<Categorias type="Pizzas"/>
+<Categorias type="Hotdogs"/>
+
+
+
+        
 </div>
     )
 }

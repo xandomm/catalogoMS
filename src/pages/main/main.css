@@ -1,0 +1,130 @@
+.main{
+    background-color: #f2f2f2;
+    color: #0D2840;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+@media(min-width:800px){
+    .Primeiraparte{
+        display: flex;
+        
+      
+        background-color: #010326;
+    }
+    .escritas{
+        margin-top: 20px;
+        width: 50%;
+       display: flex;
+
+    }
+    .escritas p{
+        font-family: 'Exo 2', sans-serif;
+        color: #f2f2f2;
+       display: flex;
+
+    }
+    .escritas h4{
+        
+        color: #F22222;
+        font-family: 'Anton', sans-serif;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+    }
+    .imagem{
+        display: flex;
+        width: 50%;
+    }
+    .imagem img{
+        display: flex;
+        max-width: 400px;
+    }
+    .sobreprecos{
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .terceiraparte h2{
+        color: #F22222;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+    }
+    .terceiraparte{
+        color: #0D2840;
+        display: flex;
+        font-size: 24pt;
+    }
+    .sobreprecos a{
+        background-color: #B3D11F;
+        border-radius: 0;
+        width: 100%;
+        color: #0D2840;
+        border:none;
+        margin-top: 20px;
+    }
+}
+@media(max-width:800px){
+
+    .sobreprecos{
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .sobreprecos a{
+        background-color: #B3D11F;
+        border-radius: 0;
+        width: 100%;
+        color: #0D2840;
+        border:none;
+        margin-top: 20px;
+    }
+    .Primeiraparte{
+        display: flex;
+        flex-direction: column;
+      
+        background-color: #010326;
+    }
+    .escritas{
+        margin-top: 20px;
+        width: 100%;
+       display: flex;
+
+    }
+    .escritas p{
+        font-family: 'Exo 2', sans-serif;
+        color: #f2f2f2;
+        width: 100%;
+       display: flex;
+       font-size: 13.5pt;
+       height: 400px;
+       
+
+    }
+    .escritas h4{
+        
+        color: #F22222;
+        font-family: 'Anton', sans-serif;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        height: 400px;
+    }
+    .imagem{
+        display: flex;
+        justify-content: center;
+        
+    }
+    .imagem img{
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+    }
+    .terceiraparte{
+        color: #0D2840;
+        display: flex;
+    }
+    .terceiraparte h2{
+        color: #F22222;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+    }
+}

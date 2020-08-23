@@ -2,6 +2,16 @@ body{
     width: 100%;
     overflow-x: hidden;
 }
+
+#bg-branco{
+    
+}
+#bg-marrom{
+    margin-top: 20px;
+    background-color:#f5f5f5f5 ;
+}
+
+
 .LogoCardapio{
     height: 10em;
     display: flex;
@@ -9,6 +19,34 @@ body{
     justify-content: center 
 
 }
+.Headercardapio{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.Headercardapio a:not([href]) {
+    color: #f2f2f2f2; 
+  
+}
+.Aberto{
+
+    font-family: 'Exo 2', sans-serif;
+    height: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
+    background: #7db549;
+    font-style: #f2f2f2f2;
+}
+.Fechado{
+    font-family: 'Exo 2', sans-serif;
+    height: 40px;
+    margin-top: 20px;
+    margin-right: 20px;
+    background: red;
+    font-style: #f2f2f2f2;
+}
+
 .carrosselCardapio{
     margin-top: 100px;
 }
@@ -26,9 +64,15 @@ body{
 .green{ color:#7db549; font-weight:bold; font-size:16px;}
 .order-now{ color:#FFF; background:#7db549; padding:5px 15px; border-radius:2px; text-decoration:none; margin:5px auto;}
 .order-now:hover{background:#689242;}
+
+
+
+
 @media only screen and (min-width:320px) and (max-width:480px){
+    
     .img{ width:100%;}
     .descricaorestaurante{
+      
         display: flex;
         justify-items: space-around;
         flex-direction: column;
@@ -36,9 +80,13 @@ body{
     .descricaorestaurante img{
       margin-top: 00px;
     }
-	}
+    }
+    
+
 @media only screen and (min-width:600px) and (max-width:768px){
-	.img{ width:96%; border-radius:3px;}
+   
+    
+    .img{ width:96%; border-radius:3px;}
 	.content-part-3-right-h4{ font-weight:600; color:#000; padding:5px 0px 0px;}
     }
 .order-now{
@@ -51,9 +99,14 @@ body{
 padding:10px 30px; text-decoration:none; border-radius:2px; background:#7db549; margin:0px 10px;}
 .content-part-1-left-btn:hover{ background:#689242;}
 .content-part-1-right{ padding-top:10px;}
+
+
+
 @media only screen and (min-width:320px) and (max-width:480px){
+
     .content-part-1-left-h3{ padding-top:30px; font-size:20px; text-align:center; }
     .descricaorestaurante{
+      
         display: flex;
         justify-items: space-between;
         flex-direction: column;
@@ -62,11 +115,21 @@ padding:10px 30px; text-decoration:none; border-radius:2px; background:#7db549; 
       margin-top: 00px;
     }
 	}
-@media only screen and (min-width:600px) and (max-width:768px){
-	.content-part-1-left-h3{ padding-top:20px; font-size:24px;}
+
+
+
+
+    @media only screen and (min-width:600px) and (max-width:768px){
+   
+    
+    
+    
+    
+        .content-part-1-left-h3{ padding-top:20px; font-size:24px;}
     .content-part-1-right{ padding-top:80px;}
 
 .descricaorestaurante{
+
     display: flex;
     justify-items: space-around;
     flex-direction: row;
@@ -76,15 +139,25 @@ padding:10px 30px; text-decoration:none; border-radius:2px; background:#7db549; 
 }
 
 }
+
+
+
+
+
+
+
+
 @media only screen and (min-width:768px){
 .descricaorestaurante{
+    margin-top: -70px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
 .descricaorestaurante img{
-  margin-top: 140px;
+  margin-top: 100px;
  width: 50%;
  margin-right: 150px;
 }
+
 }

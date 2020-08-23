@@ -1,6 +1,6 @@
 .headercolor{
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(49,140,231,1) 100%) 
+    background: transparent;
+ 
 }
 .navbar-toggler {
     color: transparent;
@@ -14,6 +14,10 @@
 }
 }
 @media(max-width: 1090px){
+    .navbar-light .navbar-toggler{
+     
+        border: none
+        }
     .paginasheader{
         font-style: white;
         display: flex;
