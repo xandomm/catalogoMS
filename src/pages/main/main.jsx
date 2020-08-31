@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/header'
 import './main.css'
-
+import Lottie from './lottie'
 import ImgPng from '../../image/imagepng.png'
 // paleta de cores:
 //azul
@@ -39,6 +39,14 @@ export default (props)=>{
                 <h2>INOVE</h2>
                 <p>Assim como você seus clientes procuram conforto e tecnologia, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla eget nisl sit amet interdum. Quisque ipsum nulla, rutrum non maximus sit amet, suscipit a eros. </p>
             </div>
+            
+<div className="quartaparte">
+            <Lottie/>
+            <p>
+                Venha participar do avanço tecnológico, a facilita está trabalhando também com sistemas de delivery e planejando um futuro melhor para seu negócio!  
+            </p>
+</div>
+
             <div className="segundaparte">
             <ul class="list-unstyled "  data-aos="fade-left" >
             

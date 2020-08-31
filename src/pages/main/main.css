@@ -19,9 +19,11 @@
 
     }
     .escritas p{
+        font-size: 22px;
         font-family: 'Exo 2', sans-serif;
         color: #f2f2f2;
        display: flex;
+       
 
     }
     .escritas h4{
@@ -52,6 +54,8 @@
     .terceiraparte{
         color: #0D2840;
         display: flex;
+        text-align: justify;
+        margin-right:20px ;
         font-size: 24pt;
     }
     .sobreprecos a{
@@ -61,6 +65,21 @@
         color: #0D2840;
         border:none;
         margin-top: 20px;
+    }
+    #error404{
+        max-width: 200%;
+    }
+    .quartaparte{
+        display: flex;
+
+    }
+    .quartaparte p{
+        vertical-align: center;
+        font-size: 20pt;
+        display: flex;
+        width: 50%;
+        justify-content: flex-end;
+        text-align: justify;
     }
 }
 @media(max-width:800px){
@@ -121,6 +140,14 @@
     .terceiraparte{
         color: #0D2840;
         display: flex;
+    }
+    .quartaparte p{
+        vertical-align: center;
+        font-size: 20pt;
+        display: flex;
+        margin:10px;
+        justify-content: flex-end;
+        text-align: justify;
     }
     .terceiraparte h2{
         color: #F22222;

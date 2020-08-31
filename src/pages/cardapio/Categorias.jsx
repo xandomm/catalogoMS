@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Food from '../../image/food.jpg'
 
 import './cardapio.css';
-
+import Produto from './produtos'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,33 +40,11 @@ export default function SimpleAccordion(props) {
         
             <div class="">
                 <div class="content-part-3">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="row content-part-3-inner">
-                            <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                                <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                            </div>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <div class="content-part-3-right-h4">Lorem Ipsum</div>
-                                <div class="price">Preço : <i class="green">55.00</i></div>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                <div class="margin_p3"><a href="#!" class="order-now">Order Now</a></div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <hr/>
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="row content-part-3-inner">
-                            <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                                <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                            </div>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <div class="content-part-3-right-h4">Lorem Ipsum</div>
-                                <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>150.00</i></div>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                <div class="margin_p3"><a href="#!" class="order-now">Order Now</a></div>
-                            </div>
-                        </div>
-                    </div>
+               
+                     <Produto title="Lorem Ipsum" preco="55.00" descricao="deliciosa pizza de anchovas "/>
+                    
                     <hr/>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="row content-part-3-inner">

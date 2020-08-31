@@ -22,6 +22,7 @@ body{
 .Headercardapio{
     display: flex;
     justify-content: space-between;
+    
 }
 
 
@@ -155,6 +156,7 @@ padding:10px 30px; text-decoration:none; border-radius:2px; background:#7db549; 
     flex-direction: row;
 }
 .descricaorestaurante img{
+ 
   margin-top: 100px;
  width: 50%;
  margin-right: 150px;
