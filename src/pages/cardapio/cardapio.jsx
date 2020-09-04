@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{useState} from 'react';
 import LogoFake from '../../image/restaurante.jpg'
 import './cardapio.css';
-
+import date from './data'
 
 import Categorias from './Categorias';
 
@@ -10,8 +10,23 @@ import Image from '../../image/images.jpg'
 import Image1 from '../../image/images(1).jpg'
 import Image2 from '../../image/restauranted.jpg'
 
+import { makeStyles } from '@material-ui/core/styles';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+
+
+
+import Produto from './produtos'
+
+
+
+
 export default (props)=>{
-    const abertura = 18.00;
+    const abertura = 12.00;
     const fechamento = 24.00;
     var d = new Date();
     var now = d.getHours() + "." + d.getMinutes();
@@ -28,7 +43,96 @@ export default (props)=>{
             )
 
         }}
+
+
+        var [carrinho, useCarrinho] = useState([])
+        var [carrinhotxt, useCarrinhotxt] = useState()
+
+        var pago = carrinho.map((elistop)=>{
+            return(
+              <li class="list-group-item d-flex justify-content-between align-items-center" key={elistop}>
+              {elistop[0]}
+            <span class=" ">R$ {elistop[1]}</span></li>
+            )
+          })
+
+
+          var zaptxt = carrinho.map((zap)=>{
+            var [carrinhotxt, useCarrinhotxt] = useState()
+           const mensagemCardapio= `${zap[0]} ${zap[1]} ${zap[2]}`;
+           useCarrinhotxt(...carrinhotxt, mensagemCardapio)
+        return carrinhotxt
+          })
+          console.log(zaptxt)
+
+
+
+
+
+
+
+
+        const lis = date.map((date)=>{
+          return(
+            //Concertando codigos, tem de colocar a imagem no objeto
+            <Produto title={date.title} preco={date.preco} codigo={date.codigo}  click={()=>{
+              useCarrinho([...carrinho, [date.title, date.preco, date.codigo]]);
+             
+            }}/>
+          );
+        })
+
+
+        ///aqui estao os produtos!
+    function produtosCat(props){
+        return(  <div className={classes.root}>
+            <Accordion id="bg-marrom">
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header bg-branco"
+              >
+                <Typography className={classes.heading}>{props.type}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+               
+              
+                  <div class="">
+                      <div class="content-part-3 ">
+                         
+                          <hr/>
+                     
+{lis}
+                          </div>
+                  </div>
+      
+      
+      
+              </AccordionDetails>
+            </Accordion>
+            
+          </div>)
+    }
      
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          width: '100%',
+          color: '#8C5954'
+        },
+        heading: {
+          fontSize: theme.typography.pxToRem(15),
+          fontWeight: theme.typography.fontWeightRegular,
+        },
+      }));
+      const classes = useStyles();      
+
+
+
+
+
+
+
+
 
 
     var VA = false;
@@ -82,12 +186,12 @@ export default (props)=>{
             <br/>
 {/* Produtos */}
 
-<Categorias type="Pizzas"/>
+{produtosCat('pizzas')}
 <Categorias type="Hotdogs"/>
 
 
 
-        
+{pago}
 </div>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -10,11 +10,13 @@ import Food from '../../image/food.jpg'
 
 import './cardapio.css';
 import Produto from './produtos'
+import date from './data'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    color: '#8C5954'
+    color: '#8C5954',
+    overflow: "hidden"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -22,9 +24,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
+
+
+
 export default function SimpleAccordion(props) {
   const classes = useStyles();
 
+  
   return (
     <div className={classes.root}>
       <Accordion id="bg-marrom">
@@ -43,12 +52,12 @@ export default function SimpleAccordion(props) {
                    
                     <hr/>
                
-                     <Produto title="Lorem Ipsum" preco="55.00" descricao="deliciosa pizza de anchovas "/>
+                    
                     
                     <hr/>
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="row content-part-3-inner">
-                            <div class="col-md-5 col-sm-5 col-xs-12" align="center">
+                            <div class="col-md-12 col-sm-7 col-xs-12" >
                                 <img src={Food} class="img-responsive img" alt="Menu Item"/>
                             </div>
                             <div class="col-md-7 col-sm-7 col-xs-12">

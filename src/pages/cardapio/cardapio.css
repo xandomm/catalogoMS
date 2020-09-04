@@ -149,6 +149,9 @@ padding:10px 30px; text-decoration:none; border-radius:2px; background:#7db549; 
 
 
 @media only screen and (min-width:768px){
+    .productTest {
+        padding-left: 100px;
+        }
 .descricaorestaurante{
     margin-top: -70px;
     display: flex;
