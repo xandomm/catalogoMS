@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
-import LogoFake from '../../image/restaurante.jpg'
-import './cardapio.css';
+import LogoFake from '../../image/capitol.jpg'
+import './caradapioNoturno.css';
 import date from './data'
 
 import Categorias from './Categorias';
@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
 
-import Produto from './produtos'
+import Produto2 from './produtos2'
 
 
 
@@ -49,9 +49,9 @@ export default (props)=>{
         var [carrinhotxt, useCarrinhotxt] = useState([])
 
         var pago = carrinho.map((elistop)=>{
-        useCarrinhotxt(...carrinhotxt, elistop)
+        
           return(
-              <li class="list-group-item d-flex justify-content-between align-items-center" key={elistop}>
+              <li class="list-group-item d-flex justify-content-between align-items-center ulli" key={elistop}>
               {elistop[0]}
             <span class=" ">R$ {elistop[1]}</span></li>
             )
@@ -59,16 +59,12 @@ export default (props)=>{
 
         
 
-var zaponga = carrinho.map((zap)=>{
-  return('https://api.whatsapp.com/send?phone=5534998269655&text='+carrinho)
-})
-console.log(zaponga)
 
 
         const lis = date.map((date)=>{
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.title} preco={date.preco} codigo={date.codigo}  click={()=>{
+            <Produto2 id="produto2" title={date.title} preco={date.preco} codigo={date.codigo}  click={()=>{
               useCarrinho([...carrinho, [date.title, date.preco, date.codigo]]);
              
             }}/>
@@ -79,19 +75,19 @@ console.log(zaponga)
         ///aqui estao os produtos!
     function produtosCat(props){
         return(  <div className={classes.root}>
-            <Accordion id="bg-marrom">
+            <Accordion id="bg-marrom2">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header bg-branco"
               >
-                <Typography className={classes.heading}>{props.type}</Typography>
+                <Typography className={classes.heading}>{props}</Typography>
               </AccordionSummary>
               <AccordionDetails>
                
               
                   <div class="">
-                      <div class="content-part-3 ">
+                      <div class="content-part-3">
                          
                           <hr/>
                      
@@ -103,21 +99,22 @@ console.log(zaponga)
       
               </AccordionDetails>
             </Accordion>
-            
+            <br/> <br/>
           </div>)
     }
      
-    const useStyles = makeStyles((theme) => ({
+    const useStyles2 = makeStyles((theme) => ({
         root: {
           width: '100%',
-          color: '#8C5954'
+          color: '#F2E6B3',
+          background: '#383B40'
         },
         heading: {
           fontSize: theme.typography.pxToRem(15),
           fontWeight: theme.typography.fontWeightRegular,
         },
       }));
-      const classes = useStyles();      
+      const classes = useStyles2();      
 
 
 
@@ -138,7 +135,7 @@ console.log(zaponga)
             )
         }else{
             return(
-                <div class="alert alert-success" role="alert">
+                <div class="alert alerta alert-success" role="alert">
   Seja bem vindo!
 </div>
             )
@@ -146,7 +143,7 @@ console.log(zaponga)
     }
  
    return(
-        <div>
+        <div className="cardapio2">
             <div className="Headercardapio">
             <img className="LogoCardapio" src={LogoFake}/>
             
@@ -154,7 +151,7 @@ console.log(zaponga)
             
             </div>
             {valeAlimentacao()}
-            <div class=" descricaorestaurante">
+            <div class=" descricaorestaurante2">
 {/* descrição do lugar */}
     
     <div class="col-md-5 col-sm-6 col-xs-12">
@@ -180,11 +177,16 @@ console.log(zaponga)
 {/* Produtos */}
 
 {produtosCat('pizzas')}
-<Categorias type="Hotdogs"/>
+{produtosCat('hotdogs')}
 
-<a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a>
+
 
 {pago}
+
+
+
+
+<a className="btn finalizar"> Realizar Pedido</a>
 </div>
     )
 }

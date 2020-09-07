@@ -17,7 +17,7 @@ class SignUp extends React.Component {
 </h5>
 
 
-<div class="card-body container px-lg-5 pt-0">
+<div class="card-body container px-lg-5 pt-0" style={{ backgroundColor: "#F2f2f2"}}>
 <br/><br/><br/>
 
   <form class="text-center" style={{color: "#757575"}}>

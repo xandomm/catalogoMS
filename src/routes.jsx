@@ -4,16 +4,19 @@ import main from './pages/main/main';
 import cardapio from './pages/cardapio/cardapio'
 import login from './pages/login/login'
 import cadastro1 from './pages/login/cadastro1'
-
+import cadastrarCardapio from './pages/login/cadastroDeCardapio';
+import cardapioNoturno from './pages/cardapio/cardapioNoturno'
 function Routes(){
     return(
  <BrowserRouter>
      <Switch>
         
         <Route path="/" exact component={ main }/>
-        <Route path="/cardapio" component={cardapio}/>
+        <Route path="/cardapio" exact component={cardapio}/>
+        <Route path="/cardapioNoturno" component={cardapioNoturno}/>
         <Route path="/login" component={login}/>
         <Route path="/cadastro" component={cadastro1}/>
+        <Route path="/cadastrocardapio" component={cadastrarCardapio}/>
      </Switch>
  </BrowserRouter>);
 };

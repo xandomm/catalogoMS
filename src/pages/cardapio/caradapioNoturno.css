@@ -1,0 +1,128 @@
+.cardapio2{
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #383B40;
+}
+
+.descricaorestaurante2 .content-part-1-left-h3{
+    color: #D9AA1E;
+}
+.descricaorestaurante2 .content-part-1-left-p{
+    color: #F2E7DC;
+}
+#bg-marrom2{
+    background-color:#262223;
+    color: #F2E6B3
+}
+.noturno{
+  color: #F2E6B3;
+  font-family: 'Raleway', sans-serif;
+}
+.preconum{
+    color: #6DA680;
+}
+.pedir{
+    background-color: #6DA680;
+}
+.ulli{
+    background-color: #BFB0B0;
+    color: #383B40;
+}
+
+.finalizar{
+    background-color: #D9AA1E;
+    color: #383B40;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width:768px){
+    .productTest {
+        padding-left: 100px;
+        }
+.descricaorestaurante2{
+    margin-top: -70px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.descricaorestaurante2 img{
+ 
+  margin-top: 100px;
+ width: 50%;
+ margin-right: 150px;
+}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width:320px) and (max-width:480px){
+    
+    .img{ width:100%;}
+    .descricaorestaurante2{
+      
+        display: flex;
+        justify-items: space-around;
+        flex-direction: column;
+    }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @media only screen and (min-width:600px) and (max-width:768px){
+   
+    
+    
+    
+    
+        .content-part-1-left-h3{ padding-top:20px; font-size:24px;}
+    .content-part-1-right{ padding-top:80px;}
+
+.descricaorestaurante2{
+
+    display: flex;
+    justify-items: space-around;
+    flex-direction: row;}}

@@ -2,6 +2,15 @@ import React from 'react';
 
 import Header from '../../components/header'
 
+
+
+
+function cadastrarCardapio(){
+    return window.location.href="/cadastrocardapio"
+}
+
+
+
 class Cadastro extends React.Component {
 
 
@@ -18,9 +27,10 @@ class Cadastro extends React.Component {
         <strong>Cadastre-se</strong>
     </h5>
 
-    <br/>
-    <div class="card-body px-lg-5 pt-0">
 
+
+    <div class="card-body px-lg-5 pt-0  container"  style={{ backgroundColor: "#f2f2f2"}}>
+    <br/>
         
         <form class="text-center" style={{color: '#757575'}} action="#!">
 
@@ -29,14 +39,14 @@ class Cadastro extends React.Component {
                     
                     <div class="md-form">
                         <input type="text" id="materialRegisterFormFirstName" class="form-control"/>
-                        <label for="materialRegisterFormFirstName">First name</label>
+                        <label for="materialRegisterFormFirstName"><h5>Nome</h5></label>
                     </div>
                 </div>
                 <div class="col">
                   
                     <div class="md-form">
                         <input type="email" id="materialRegisterFormLastName" class="form-control"/>
-                        <label for="materialRegisterFormLastName">Last name</label>
+                        <label for="materialRegisterFormLastName"><h5>Sobrenome</h5></label>
                     </div>
                 </div>
             </div>
@@ -44,40 +54,37 @@ class Cadastro extends React.Component {
 
             <div class="md-form mt-0">
                 <input type="email" id="materialRegisterFormEmail" class="form-control"/>
-                <label for="materialRegisterFormEmail">E-mail</label>
+                <label for="materialRegisterFormEmail"><h5>Email</h5></label>
             </div>
 
             <div class="md-form">
                 <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"/>
-                <label for="materialRegisterFormPassword">Password</label>
+                <label for="materialRegisterFormPassword"><h5>Senha</h5></label>
                 <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                    At least 8 characters and 1 digit
+                    
                 </small>
             </div>
 
             <div class="md-form">
                 <input type="password" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"/>
-                <label for="materialRegisterFormPhone">Phone number</label>
+                <label for="materialRegisterFormPhone"><h5>Número</h5></label>
                 <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                    Optional - for two step authentication
+                    
                 </small>
             </div>
 
             
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter"/>
-                <label class="form-check-label" for="materialRegisterFormNewsletter">Subscribe to our newsletter</label>
-            </div>
+          
 
           
-            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" href="/cadastrocardapio">Cadastre-se</button>
 
             
          
            
-            <p>By clicking
-                <em>Sign up</em> you agree to our
-                <a href="" target="_blank">terms of service</a></p>
+            <p>Clicando em Cadastrar eu concordo com os
+               
+                <a href="" target="_blank"> termos de serviços</a></p>
 
         </form>
    
