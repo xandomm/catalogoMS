@@ -96,9 +96,23 @@ class cadastrarCardapio extends React.Component {
       <label for="inputZip"><h5>CEP</h5></label>
       <input type="text" class="form-control" id="inputZip"/>
     </div>
-  </div>
-  <div class="form-group">
+    <div class="form-group col-md-6">
+      <label for="inputCity"><h5>Preço frete</h5></label>
+      <input type="number" class="form-control" id="inputCity"/>
+    </div>
     
+  </div>
+  
+  <div className="radioinput1">
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+  <label class="form-check-label" for="inlineCheckbox1">cardapio branco</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <label class="form-check-label" for="inlineCheckbox2">cardápio noturno</label>
+</div>
+
   </div>
   <a href="/cadastroDeProdutos" class="btn btn-primary">Finalizar</a>
   <br/>

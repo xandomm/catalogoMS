@@ -49,7 +49,7 @@ export default (props)=>{
         var [carrinhotxt, useCarrinhotxt] = useState([])
 
         var pago = carrinho.map((elistop)=>{
-        useCarrinhotxt(...carrinhotxt, elistop)
+     
           return(
               <li class="list-group-item d-flex justify-content-between align-items-center" key={elistop}>
               {elistop[0]}
@@ -85,7 +85,7 @@ console.log(zaponga)
                 aria-controls="panel1a-content"
                 id="panel1a-header bg-branco"
               >
-                <Typography className={classes.heading}>{props.type}</Typography>
+                <Typography className={classes.heading}>{props}</Typography>
               </AccordionSummary>
               <AccordionDetails>
                
@@ -180,11 +180,30 @@ console.log(zaponga)
 {/* Produtos */}
 
 {produtosCat('pizzas')}
-<Categorias type="Hotdogs"/>
+{produtosCat('hotdog')}
+<div className="radioinput1">
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+  <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
+</div>
 
-<a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a>
+
+</div>
+<br/>
+<br/>
+{/* <a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a> */}
 
 {pago}
+<br/>
+<a className="btn finalizar"> Realizar Pedido</a>
 </div>
     )
 }

@@ -3,9 +3,14 @@ body{
     overflow-x: hidden;
 }
 
-#bg-branco{
+.radioinput1{
+    padding:40px;
+    display: flex;
+    justify-content: space-between;
     
+    color: black;
 }
+
 #bg-marrom{
     margin-top: 20px;
     background-color:#f5f5f5f5 ;
@@ -151,6 +156,7 @@ padding:10px 30px; text-decoration:none; border-radius:2px; background:#7db549; 
 @media only screen and (min-width:768px){
     .productTest {
         padding-left: 100px;
+        font-family: 'Raleway', sans-serif;
         }
 .descricaorestaurante{
     margin-top: -70px;

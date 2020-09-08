@@ -74,7 +74,7 @@ export default (props)=>{
 
         ///aqui estao os produtos!
     function produtosCat(props){
-        return(  <div className={classes.root}>
+        return(  <div className={classes.root1}>
             <Accordion id="bg-marrom2">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -104,7 +104,7 @@ export default (props)=>{
     }
      
     const useStyles2 = makeStyles((theme) => ({
-        root: {
+        root1: {
           width: '100%',
           color: '#F2E6B3',
           background: '#383B40'
@@ -179,6 +179,28 @@ export default (props)=>{
 {produtosCat('pizzas')}
 {produtosCat('hotdogs')}
 
+
+
+
+
+<div className="radioinput">
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+  <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
+</div>
+
+
+</div>
+<br/>
+<br/>
 
 
 {pago}
