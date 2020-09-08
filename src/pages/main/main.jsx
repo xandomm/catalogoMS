@@ -56,7 +56,7 @@ export default (props)=>{
               <strong><p>Por apenas</p></strong>
                 <h2 class="mt-0 mb-1">R$9,90</h2>
                 <strong><p>Mensal</p></strong><p>Você constrói seu cardápio virtual por R$9,90 mensal, e depois só paga pelos pedidos que foram feitos <strong>UTILIZANDO A PLATAFORMA!</strong></p>
-                <a href="#" class="btn btn-primary" >Quero começar agora!</a>
+                <a href="/login" class="btn btn-primary" >Quero começar agora!</a>
               </div>
                 
             </li></a>
