@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 import Header from '../../components/header'
 
@@ -12,12 +12,25 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 
 
+export default (props)=>  {
+    const [value,setValue] = useState('cadastro');
 
-class cadastrarCardapio extends React.Component {
-
-
-
-    render(){
+    const handleChange = (event) => {
+        setValue(event.target.value);
+        
+      };
+      function CadastroOuAlteracao(value){
+        if (value!='cadastro'){
+            return(
+                <div class="form-group">
+                <label for="inputAddress"><strong>id do produto que deseja alterar</strong></label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Código escrito no produto do cardápio"/>
+                {console.log(value)}
+                </div>
+               
+            )
+        }
+    }
         return (
         <div>
                 <Header/>
@@ -29,19 +42,19 @@ class cadastrarCardapio extends React.Component {
             <h3 class="card-header info-color white-text text-center py-4" style={{color: "#f2f2f2", backgroundColor: "#0D2840", fontFamily: "'Anton', sans-serif", letterSpacing: "2pt"}}>Cadastrar ou alterar produtos</h3>
            <br/>
            <div className="radioinput1">
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
-  <label class="form-check-label" for="inlineCheckbox1"><strong>Alterar produto</strong></label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
-  <label class="form-check-label" for="inlineCheckbox2"><strong>Cadastrar produto</strong></label>
-</div>
 
-  </div>
+           <FormControl component="fieldset" style={{color:"black"}}>
+          
+          <RadioGroup aria-label="gender" name="gender1"value={value} onChange={handleChange}>
+          <div class="form-check form-check-inline"> <FormControlLabel value="cadastro" control={<Radio />} label="Cadastrar produto" /></div>
+          <div class="form-check form-check-inline"><FormControlLabel value="alterar" control={<Radio />} label="Alterar produto" /></div>
+         
+          </RadioGroup>
+          </FormControl></div>
             <form className="container">
             <div class="form-row">
     <div class="form-group col-md-6">
+        {CadastroOuAlteracao(value)}
       <label for="inputEmail4"><h5>Nome do produto</h5></label>
       <input type="name" class="form-control" id="inputEmail4"/>
     </div>
@@ -75,5 +88,4 @@ class cadastrarCardapio extends React.Component {
         </div>
         )
         }
-    }
-export default cadastrarCardapio
+  
