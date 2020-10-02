@@ -1,0 +1,7 @@
+.inputpagamento{
+    display: flex;
+    justify-content: space-between;
+}
+.inputpreencher{
+    width: 100%;
+}

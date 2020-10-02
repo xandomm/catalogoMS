@@ -208,7 +208,7 @@ export default (props)=>{
 
 
 
-<a className="btn finalizar"> Realizar Pedido</a>
+<a className="btn finalizar" href={'https://api.whatsapp.com/send?phone=5534998269655&text=dsa'+carrinho}> Realizar Pedido</a>
 </div>
     )
 }

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-import Header from '../../components/header'
+import Header from '../../../components/header'
 
 
 
@@ -27,26 +27,22 @@ export default (props)=>  {
             <div class="form-row">
     <div class="form-group col-md-6">
 
-      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Cadastrar produto</a>
+      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastroprodutos">Cadastrar produto</a>
     </div>
     
   <div class="form-group col-md-6">
-  <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Alterar Cardápio</a>
+  <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastrocardapio">Alterar Cardápio</a>
   </div>
 
-<div class="form-group col-md-6">
-<a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Alterar Dados pessoais</a>
-    </div>
+
     <div class="form-group col-md-6">
-    <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Alterar dados de pagamento</a>
+    <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/dadospagamento">Alterar dados de pagamento</a>
     </div>
     <div class="form-group col-md-6">
     <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Visualizar cardápio</a>
     </div>
     <div class="form-group col-md-6">
-    <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#f22222"}}>Cancelar assinatura</a>
-    </div>
-    <div className="radioinput1">
+ 
     
 
   <div class="form-check form-check-inline">
