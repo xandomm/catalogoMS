@@ -17,7 +17,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-
+import ProdutosProvider, {useProdutos} from '../../Context/productContext'
 
 
 import Produto2 from './produtos2'
@@ -45,33 +45,37 @@ export default (props)=>{
         }}
 
 
-        var [carrinho, useCarrinho] = useState([])
-        var [carrinhotxt, useCarrinhotxt] = useState([])
-
-        var pago = carrinho.map((elistop)=>{
+        var {carrinho, setCarrinho} = useProdutos()
         
+        var preco1= 0;
+        var pago = carrinho.map((aos)=>{
+          preco1= preco1+ parseFloat(aos.preco)
           return(
-              <li class="list-group-item d-flex justify-content-between align-items-center ulli" key={elistop}>
-              {elistop[0]}
-            <span class=" ">R$ {elistop[1]}</span></li>
-            )
+              <li class="list-group-item d-flex justify-content-between align-items-center" key={`${aos.nome}_{aos.preco}_{aos.opcionais[]}`}>
+              {aos.nome} + {aos.opcionais.map((o)=>{
+               
+                preco1= preco1+ parseFloat(o.preco)
+              return(<div  key={`${o.name}_{o.preco}`}>{o.name} R$ {o.preco} +</div>)
+              })}
+            <span class=" ">R$ {aos.preco}</span></li>
+            ); 
           })
 
         
-
-
-
-        const lis = date.map((date)=>{
-          return(
-            //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto2 id="produto2" title={date.title} preco={date.preco} codigo={date.codigo}  click={()=>{
-              useCarrinho([...carrinho, [date.title, date.preco, date.codigo]]);
-             
-            }}/>
-          );
-        })
-
-
+          console.log(carrinho)
+          var [markOpc, setMarkOpc] = useState([])
+            const opc = props.opcionais;
+            const clic = props.click
+          
+                  const lis = date.map((date)=>{
+                    return(
+                      //Concertando codigos, tem de colocar a imagem no objeto
+                      <Produto2 className="noturno" title={date.title} preco={date.preco} codigo={date.codigo} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc}  click={(opcionais)=>{
+                        setCarrinho([...carrinho, {nome: date.title,preco: date.preco,codigo: date.codigo, opcionais: markOpc}]); setMarkOpc([]);
+                       
+                      }}/>
+                    );
+                  })
         ///aqui estao os produtos!
     function produtosCat(props){
         return(  <div className={classes.root1}>
@@ -141,7 +145,26 @@ export default (props)=>{
             )
         }
     }
- 
+
+//link zap
+// var WhatsApp = dateStore.map((zap)=>{
+//   return(
+//    <a className="btn finalizar"   href={"https://api.whatsapp.com/send?phone=55998269655&text=%20*PEDIDO%20FACILITA%20AI*%0a"+carrinho.map((elis)=>{
+//     return(
+//       //{nome: date.title,preco: date.preco,codigo: date.codigo, opcionais: markOpc}
+//      ` ${elis.nome} %20 ${elis.preco}%0a` +elis.opcionais.map((k)=>{return(`OPCIONAIS%20 ${k.name} %20 ${k.preco}`)})+``
+//     )})  
+//     }>Realizar Pedido</a>
+   
+//   )
+// });
+var [Check, setCheck] = useState({})
+var handleChange1=(event)=> {
+
+  setCheck(event.target.value )
+}
+
+console.log(Check)
    return(
         <div className="cardapio2">
             <div className="Headercardapio">
@@ -182,33 +205,40 @@ export default (props)=>{
 
 
 
-
+<form>
 <div className="radioinput">
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Retirar no local" checked={Check==="Retirar no local"} onClick={handleChange1} name="local"/>
   <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Entregar" checked={Check=== "Entregar"} onClick={handleChange1} name="local1"/>
   <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+ 
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Comer no local" checked={Check=="Comer no local"} onClick={handleChange1} name="local2"/>
   <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
 </div>
 
 
 </div>
+</form>
 <br/>
 <br/>
 
 
 {pago}
+   <h4 className="radioinput">total: R$ {preco1}</h4>
 
 
 
-
-<a className="btn finalizar" href={'https://api.whatsapp.com/send?phone=5534998269655&text=dsa'+carrinho}> Realizar Pedido</a>
+   <a className="btn finalizar"   href={"https://api.whatsapp.com/send?phone=55998269655&text=%20*PEDIDO%20FACILITA%20AI*%0a"+carrinho.map((elis)=>{
+    return(
+      //{nome: date.title,preco: date.preco,codigo: date.codigo, opcionais: markOpc}
+     ` --${elis.nome} %20 ${elis.preco}%0a` +elis.opcionais.map((k)=>{return(`OPCIONAIS%20 ${k.name} %20 ${k.preco} %20`)})+`%0a${Check}`
+    )})  
+    }>Realizar Pedido</a>
 </div>
     )
 }

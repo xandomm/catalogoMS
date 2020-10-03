@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 
 import Food from '../../image/food.jpg'
 import './cardapio.css';
@@ -15,79 +15,74 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
+import { useState } from 'react';
+
+
+
+import ProdutosProvider, {useProdutos} from '../../Context/productContext'
+
 const emails = ['username@gmail.com', 'user02@gmail.com'];
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-  root: {
-    display: 'flex',
-  },
-  formControl: {
-    margin: theme.spacing(3),
-  },
-}));
+
 
 
 
 
 
 export default function SimpleDialogDemo(props) {
+
+
+
+
+  var [markOpc1, setMarkOpc1] = [props.markOpc, props.setMarkOpc]
+  const opc = props.opcionais;
+  const clic = props.click
+  
     SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedValue: PropTypes.string.isRequired,
 };
+
     function SimpleDialog(props) {
-        const classes = useStyles();
-        const { onClose, selectedValue, open } = props;
-      
-        const handleClose = () => {
-          onClose(selectedValue);
-        };
-      
-        const handleListItemClick = (value) => {
-          onClose(value);
-        };
+
+
+        function Mark(props){
+          return(<div><Button onClick={props.click}>{props.name} R${props.preco}</Button></div>)
+        }
+     
+        
+    
       
         return (
+          <ProdutosProvider>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Opcionais</DialogTitle>
+        <DialogTitle id="form-dialog-title">Opcionais {props.nome}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Escreva aqui a maneira qual deseja seu pedido!
-          </DialogContentText>
-              
+        
+        {opc.map((aos) => (
+          <Mark name={aos.name} click={()=>{setMarkOpc1([...markOpc1, {name: aos.name, preco: aos.preco}])}} preco={aos.preco} />
+        ))}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="danger">
             Cancelar
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Adicionar ao carrinho!
+          <Button onClick={clic}  color="primary">
+            <a onClick={handleClose}>Adicionar ao carrinho!</a>
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog></ProdutosProvider>
       
         );
+       
       }
-    const [state, setState] = React.useState({
-        gilad: true,
-        jason: false,
-        antoine: false,
-      });
-    
-      const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-      };
-    
-      const { gilad, jason, antoine } = state;
-      
+
+  
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = () => {
+    
     setOpen(true);
   };
 
@@ -107,9 +102,11 @@ return (
                                             <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>{props.preco}</i></div>
                                             <p>{props.descricao}</p>
                                         <div class="margin_p3"><a href="#!" class="order-now" onClick={handleClickOpen}>Pedir agora</a>
-                                        <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+                                        <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} opcionais={props.opcionais} nome={props.title} MarcOpcionais={Children.markOpc} click={props.click}/>
+                               {console.log(markOpc1)}
                                         </div>
                                     </div>
+                                    
                                                 {/* <div class="col-md-5 col-sm-5 col-xs-12" align="center">
                                 <img src={Food} class="img-responsive img" alt="Menu Item"/>
                             </div>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{Children, useState} from 'react';
 import LogoFake from '../../image/restaurante.jpg'
 import './cardapio.css';
 import date from './data'
@@ -18,6 +18,8 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 
+
+import ProdutosProvider, {useProdutos} from '../../Context/productContext'
 
 
 import Produto from './produtos'
@@ -45,15 +47,15 @@ export default (props)=>{
         }}
 
 
-        var [carrinho, useCarrinho] = useState([])
+        var {carrinho, setCarrinho} = useProdutos()
         var [carrinhotxt, useCarrinhotxt] = useState([])
 
-        var pago = carrinho.map((elistop)=>{
+        var pago = carrinho.map((aos)=>{
      
           return(
-              <li class="list-group-item d-flex justify-content-between align-items-center" key={elistop}>
-              {elistop[0]}
-            <span class=" ">R$ {elistop[1]}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center" key={`${aos.nome}_{aos.preco}`}>
+              {aos.nome}+{aos.opcionais}
+            <span class=" ">R$ {aos.preco}</span></li>
             )
           })
 
@@ -62,14 +64,16 @@ export default (props)=>{
 var zaponga = carrinho.map((zap)=>{
   return('https://api.whatsapp.com/send?phone=5534998269655&text='+carrinho)
 })
-console.log(zaponga)
-
+console.log(carrinho)
+var [markOpc, setMarkOpc] = useState([])
+  const opc = props.opcionais;
+  const clic = props.click
 
         const lis = date.map((date)=>{
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.title} preco={date.preco} codigo={date.codigo}  click={()=>{
-              useCarrinho([...carrinho, [date.title, date.preco, date.codigo]]);
+            <Produto title={date.title} preco={date.preco} codigo={date.codigo} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+              setCarrinho([...carrinho, {nome: date.title,preco: date.preco,codigo: date.codigo,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>
           );
@@ -145,7 +149,31 @@ console.log(zaponga)
         }
     }
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    return(
+    <ProdutosProvider>
         <div>
             <div className="Headercardapio">
             <img className="LogoCardapio" src={LogoFake}/>
@@ -204,6 +232,6 @@ console.log(zaponga)
 {pago}
 <br/>
 <a className="btn finalizar"> Realizar Pedido</a>
-</div>
+</div></ProdutosProvider>
     )
 }
