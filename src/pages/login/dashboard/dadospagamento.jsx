@@ -70,11 +70,7 @@ export default class dadospagamento extends React.Component {
         return ( <TextField id="standard-basic"  value={this.state.freteGratisV} onChange={this.handleChangeV.bind(this)} className="inputpreencher" name="freteGratisV" label="Digite o Valor mínimo para frete grátis:" required/>)
     }
   }
-inputTypeValormin( valor ){
-    if(valor===true){
-        return ( <TextField id="standard-basic"  value={this.state.compraMinV} onChange={this.handleChangeV.bind(this)} className="inputpreencher" name="compraMinV" label="Digite o Valor mínimo de compras:" required/>)
-    }
-  }
+
 
 
 render(){
@@ -129,10 +125,7 @@ render(){
           control={<Switch checked={this.state.freteGratis} color="primary"  onChange={this.handleChange.bind(this)} name="freteGratis" />}
           label="Frete grátis para compras com Valor mínimo"
         />
-        <FormControlLabel
-          control={<Switch checked={this.state.compraMin} color="primary" onChange={this.handleChange.bind(this)} name="compraMin" />}
-          label="Valor mínimo de compras"
-        />
+
       </FormGroup>
      
     </FormControl>
@@ -144,7 +137,7 @@ render(){
            </div>
            {this.inputTypeFrete(this.state.frete)}
       {this.inputTypeFreteGratis(this.state.freteGratis)}
-      {this.inputTypeValormin(this.state.compraMin)}
+   
       <br/><br/><br/>
       <button className="btn btn-info">
         Realizar alterações
