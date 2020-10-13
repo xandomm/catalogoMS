@@ -32,16 +32,24 @@ export default class dadospagamento extends React.Component {
       debito: true,
       dinheiro: true,
       frete: false,
+      freteV: '',
       freteGratis: false,
+      freteGratisV: '',
       compraMin: false,
+      compraMinV: '',
       retirar: true
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleChangeV = this.handleChangeV.bind(this);
   }
   
   handleChange(event) {
 
     this.setState({ ...this.state, [event.target.name]: event.target.checked })
+  }
+  handleChangeV(event) {
+
+    this.setState({ ...this.state, [event.target.name]: event.target.value})
   }
   // const [state, setState] = React.useState({
     // credito: true,
@@ -52,7 +60,21 @@ export default class dadospagamento extends React.Component {
   // const handleChange = (event) => {
   //   setState({ ...state, [event.target.name]: event.target.checked });
   // };
-
+  inputTypeFrete(frete){
+    if(frete===true){
+        return ( <TextField id="standard-basic" value={this.state.freteV} onChange={this.handleChangeV.bind(this)} className="inputpreencher" name="freteV" label="Digite o Valor do frete aqui:" required/>)
+    }
+  }
+  inputTypeFreteGratis( freteg ){
+    if(freteg===true){
+        return ( <TextField id="standard-basic"  value={this.state.freteGratisV} onChange={this.handleChangeV.bind(this)} className="inputpreencher" name="freteGratisV" label="Digite o Valor mínimo para frete grátis:" required/>)
+    }
+  }
+inputTypeValormin( valor ){
+    if(valor===true){
+        return ( <TextField id="standard-basic"  value={this.state.compraMinV} onChange={this.handleChangeV.bind(this)} className="inputpreencher" name="compraMinV" label="Digite o Valor mínimo de compras:" required/>)
+    }
+  }
 
 
 render(){
@@ -120,9 +142,10 @@ render(){
                </div>
                
            </div>
-           {inputTypeFrete(this.state.frete)}
-      {inputTypeFreteGratis(this.state.freteGratis)}
-      {inputTypeValormin(this.state.compraMin)}
+           {this.inputTypeFrete(this.state.frete)}
+      {this.inputTypeFreteGratis(this.state.freteGratis)}
+      {this.inputTypeValormin(this.state.compraMin)}
+      <br/><br/><br/>
       <button className="btn btn-info">
         Realizar alterações
       </button>
@@ -133,20 +156,6 @@ render(){
   </div>
         
         )
-        function inputTypeFrete( frete ){
-          if(frete===true){
-              return ( <TextField id="standard-basic" className="inputpreencher" name="precoFrete" label="Digite o Valor do frete aqui:" required/>)
-          }
-        }
-        function inputTypeFreteGratis( freteg ){
-          if(freteg===true){
-              return ( <TextField id="standard-basic" className="inputpreencher" name="precoFrete" label="Digite o Valor mínimo para frete grátis:" required/>)
-          }
-        }
-        function inputTypeValormin( valor ){
-          if(valor===true){
-              return ( <TextField id="standard-basic" className="inputpreencher" name="precoFrete" label="Digite o Valor mínimo de compras:" required/>)
-          }
-        }
+    
         }}
   
