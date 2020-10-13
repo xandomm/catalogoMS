@@ -20,10 +20,9 @@ export default class cadastroDeProdutos extends React.Component {
       img:'',
       preco: '',
       desc: '',
-      opcionais: [{
-        nomeopc: '',
-        precoopc: ''
-      }]
+      nomeopc1: '',
+      precopc1: '',
+      opcionais: []
     }
    
     this.handleChange = this.handleChange.bind(this);
@@ -71,16 +70,48 @@ handleChangeO(event) {
       <label for="inputEmail4"><h5>Descrição</h5></label>
       <input type="name" name="desc" value={this.state.desc} onChange={this.handleChange} class="form-control" id="inputEmail4"/>
     </div>
+   
+
+  
     <h5>Opcionais</h5>
+    
+    <table class="table table-dark">
+  <thead>
+    <tr>
+     
+      <th scope="col">Nome</th>
+     
+      <th scope="col">Preço</th>
+    </tr>
+  </thead>
+  <tbody>
+
+
+  {
+    this.state.opcionais.map(item=>{ return(<tr>
+     
+    <td>{item.nomeopc}</td>
+    <td>{item.precoopc}</td>
+    
+    </tr>)
+    
+     
+    }
+      )
+    }
+
+   
+  </tbody>
+</table>
     <div className="input-group">
    
    
-      <input type="name" name="nomeopc" value={this.state.opcionais.nomeopc} placeholder="Nome do opcional" class="form-control" id="inputEmail4"/>
+      <input type="name" name="nomeopc1" value={this.state.nomeopc1} onChange={this.handleChange} placeholder="Nome do opcional" class="form-control" id="inputEmail4"/>
    
-      <input type="number" name="precoopc" value={this.state.opcionais.precoopc} placeholder="Preço do opcional" min="0"  class="form-control" id="inputEmail4"/>
-      <div class="input-group-append" onChange={()=>{this.setState({ ...this.state, opcionais: [{ nomeopc: this.state.opcionais.nomeopc, precoopc: this.state.opcionais.precoopc}]})}}>
+      <input type="number" name="precoopc1" value={this.state.precoopc1} onChange={this.handleChange} placeholder="Preço do opcional" min="0"  class="form-control" id="inputEmail4"/>
+      <div class="input-group-append" >
         {console.log(this.state)}
-      <button className="btn btn-outline-info"> Adicionar Opcionais</button>
+      <a className="btn btn-outline-info" onClick={()=>{this.setState({ ...this.state, opcionais: [...this.state.opcionais,{ nomeopc: this.state.nomeopc1, precoopc: this.state.precoopc1}]})}}> Adicionar Opcionais</a>
     </div>
   </div>
     <div className="radioinput1">
