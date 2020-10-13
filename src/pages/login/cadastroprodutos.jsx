@@ -1,7 +1,13 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 import Header from '../../components/header'
 import './cad.css'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 
 
@@ -14,8 +20,6 @@ export default class cadastroDeProdutos extends React.Component {
       img:'',
       preco: '',
       desc: '',
-      nomeopc1: '',
-      precoopc1: '',
       opcionais: [{
         nomeopc: '',
         precoopc: ''
@@ -32,11 +36,8 @@ export default class cadastroDeProdutos extends React.Component {
     this.setState({ ...this.state, [event.target.name]: event.target.value })
   }
 handleChangeO(event) {
-    this.setState({ ...this.state, [event.target.name]: event.target.value})
+    this.setState({ ...this.state, opcionais: [{ [event.target.name]: event.target.value}] })
 }
-
-
-mudapora(){this.setState({ ...this.state, opcionais: [...this.state.opcionais, { nomeopc: 'f', precoopc: 2}]})}
     render(){
         return (
         <div>
@@ -74,12 +75,12 @@ mudapora(){this.setState({ ...this.state, opcionais: [...this.state.opcionais, {
     <div className="input-group">
    
    
-      <input type="name" name="nomeopc1" value={this.state.opcionais.nomeopc1}  onChange={this.handleChangeO} placeholder="Nome do opcional" class="form-control" id="inputEmail4"/>
+      <input type="name" name="nomeopc" value={this.state.opcionais.nomeopc} placeholder="Nome do opcional" class="form-control" id="inputEmail4"/>
    
-      <input type="number" name="precoopc1" value={this.state.opcionais.precoopc1} onChange={this.handleChangeO} placeholder="Preço do opcional" min="0"  class="form-control" id="inputEmail4"/>
-      <div class="input-group-append" >
+      <input type="number" name="precoopc" value={this.state.opcionais.precoopc} placeholder="Preço do opcional" min="0"  class="form-control" id="inputEmail4"/>
+      <div class="input-group-append" onChange={()=>{this.setState({ ...this.state, opcionais: [{ nomeopc: this.state.opcionais.nomeopc, precoopc: this.state.opcionais.precoopc}]})}}>
         {console.log(this.state)}
-      <button className="btn btn-outline-info" type="submit" onChange={this.mudapora}> Adicionar Opcionais</button>
+      <button className="btn btn-outline-info"> Adicionar Opcionais</button>
     </div>
   </div>
     <div className="radioinput1">

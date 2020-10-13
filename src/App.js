@@ -3,7 +3,7 @@ import Header from './components/header'
 import Routes from './routes'
 import AOS from 'aos'
 import ProdutosProvider from './Context/productContext'
-import * as firebase from 'firebase'
+
 function App() {
   AOS.init();
   return (
