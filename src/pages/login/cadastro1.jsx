@@ -5,15 +5,60 @@ import Header from '../../components/header'
 
 
 
-function cadastrarCardapio(){
-    return window.location.href="/cadastrocardapio"
-}
-
 
 
 class Cadastro extends React.Component {
 
 
+
+
+        constructor(){
+          super()
+          this.state={
+            Nome: '',
+            Sobrenome: '',
+            Email:'',
+            Senha:'',
+     
+          }
+          this.handleChange = this.handleChange.bind(this);
+          this.cadastrarCliente = this.cadastrarCliente.bind(this);
+      
+      
+        }
+      
+        cadastrarCliente(){
+          var now = new Date().getTime();
+          var data = {
+            _id: now,
+            nome: this.state.Nome,
+            sobrenome: this.state.Sobrenome,
+            email: this.state.Email,
+            senha: this.state.Senha,
+            documento: this.state.documento
+          }
+          data = JSON.stringify(data)
+              console.log(data)
+              fetch('http://localhost:5000/api/cadastro',{
+                  method:"POST",
+                  headers: {'Content-Type': 'application/json'},
+                  body:data
+              }).then(alert('Cadastrado com sucesso'))
+              .catch(err => alert(err))
+              window.location.href = "/cadastrocardapio";
+      
+        }
+      
+        handleChange(event){
+          const target = event.target;
+          const value = target.value;
+          const name = target.name;
+      
+          this.setState({
+              [name]:value
+          });
+      }
+      
 
     render(){
         return (
@@ -38,14 +83,17 @@ class Cadastro extends React.Component {
                 <div class="col">
                     
                     <div class="md-form">
-                        <input type="text" id="materialRegisterFormFirstName" class="form-control"/>
+                        <input type="text" name="Nome" id="materialRegisterFormFirstName" class="form-control" value={this.state.Nome} onChange={this.handleChange}/>
                         <label for="materialRegisterFormFirstName"><h5>Nome</h5></label>
                     </div>
                 </div>
                 <div class="col">
                   
                     <div class="md-form">
-                        <input type="email" id="materialRegisterFormLastName" class="form-control"/>
+                        <input type="email" id="materialRegisterFormLastName"              name="Sobrenome"
+                autoComplete="on"
+                value={this.state.Sobrenome}
+                onChange={this.handleChange} class="form-control"/>
                         <label for="materialRegisterFormLastName"><h5>Sobrenome</h5></label>
                     </div>
                 </div>
@@ -53,31 +101,32 @@ class Cadastro extends React.Component {
 
 
             <div class="md-form mt-0">
-                <input type="email" id="materialRegisterFormEmail" class="form-control"/>
+                <input type="email" id="materialRegisterFormEmail"                 name="Email"
+                autoComplete="Email"
+                value={this.state.Email}
+                onChange={this.handleChange} class="form-control"/>
                 <label for="materialRegisterFormEmail"><h5>Email</h5></label>
             </div>
 
             <div class="md-form">
-                <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"/>
+                <input type="password" id="materialRegisterFormPassword"
+                                value={this.state.Senha}
+                                onChange={this.handleChange}
+                                name="Senha"
+                class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"/>
                 <label for="materialRegisterFormPassword"><h5>Senha</h5></label>
                 <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                     
                 </small>
             </div>
 
-            <div class="md-form">
-                <input type="password" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"/>
-                <label for="materialRegisterFormPhone"><h5>Número</h5></label>
-                <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                    
-                </small>
-            </div>
+            
 
             
           
 
           
-            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit" href="/cadastrocardapio">Cadastre-se</button>
+            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"  onClick={this.cadastrarCliente} type="submit">Cadastre-se</button>
 
             
          

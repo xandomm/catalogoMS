@@ -25,6 +25,51 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default class dadospagamento extends React.Component {
+
+
+  componentDidMount(){
+    fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
+      res=>{
+        if (res.status===404) {
+          this.setState({
+            isUpdate: false
+          })
+        }
+        else{
+          res.json().then(
+          dados => {
+            console.log(dados)
+            this.setState({
+            _id:this.props.id,
+            isLoading: false,
+            nome:dados.nome,
+            desc:dados.desc,
+            endereco:dados.endereco,
+            CEP:dados.CEP,
+            abertura: dados.abertura,
+            fechamen: dados.fechamen,
+            telefone:dados.telefone,
+            url: dados.url,
+            cidade:dados.cidade,
+            frete: dados.frete,
+            estado:dados.estado,
+            valeRefeicao: dados.valeRefeicao,
+            isUpdate: true,
+            credito: dados.credito,
+            debito: dados.debito,
+            dinheiro: dados.dinheiro,
+            frete: dados.frete,
+            freteV: dados.freteV,
+            freteGratis: dados.freteGratis,
+            freteGratisV: dados.freteGratisV,
+           
+            retirar: dados.retirar
+          })}
+          )
+        }
+      }
+    )
+  }
   constructor(){
     super()
     this.state={
@@ -41,6 +86,7 @@ export default class dadospagamento extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeV = this.handleChangeV.bind(this);
+    this.cadastrarProduto = this.cadastrarProduto.bind(this);
   }
   
   handleChange(event) {
@@ -51,15 +97,53 @@ export default class dadospagamento extends React.Component {
 
     this.setState({ ...this.state, [event.target.name]: event.target.value})
   }
-  // const [state, setState] = React.useState({
-    // credito: true,
-    // debito: true,
-    // dinheiro: true,
-  // });
 
-  // const handleChange = (event) => {
-  //   setState({ ...state, [event.target.name]: event.target.checked });
-  // };
+  cadastrarProduto(){
+
+
+    var data = { 
+      credito: this.state.credito,
+      debito: this.state.debito,
+      dinheiro: this.state.dinheiro,
+      frete: this.state.frete,
+      freteV: this.state.freteV,
+      freteGratis: this.state.freteGratis,
+      freteGratisV: this.state.freteGratisV,
+      _id:this.props.id,
+      retirar: this.state.retirar
+      
+
+    }
+  
+
+    data = JSON.stringify(data)
+
+  
+
+
+
+
+
+     
+      fetch('http://localhost:5000/api/restaurante/'+this.props.id,{
+        method:"PUT",
+        headers: {'Content-Type': 'application/json'},
+        body:data
+    }).then(alert('Catálogo alterado com sucesso'))
+    .catch(err => alert(err))
+    window.location.href='/dashboard'
+    }
+
+
+
+
+
+
+
+
+
+
+
   inputTypeFrete(frete){
     if(frete===true){
         return ( <TextField id="standard-basic" value={this.state.freteV} onChange={this.handleChangeV.bind(this)} className="inputpreencher" name="freteV" label="Digite o Valor do frete aqui:" required/>)
@@ -86,7 +170,7 @@ render(){
 <div>
 <div className="" style={{backgroundColor:"#f3f3f3", color: "black"}} >
           
-         
+         {  console.log(this.state)}
             <h3 class="card-header info-color white-text text-center py-4" style={{color: "#f2f2f2", backgroundColor: "#0D2840", fontFamily: "'Anton', sans-serif", letterSpacing: "2pt"}}>Área de pagamento</h3>
            <br/>
            <div className="container inputpagamento">
@@ -129,10 +213,7 @@ render(){
           control={<Switch checked={this.state.freteGratis} color="primary"  onChange={this.handleChange.bind(this)} name="freteGratis" />}
           label="Frete grátis para compras com Valor mínimo"
         />
-        <FormControlLabel
-          control={<Switch checked={this.state.compraMin} color="primary" onChange={this.handleChange.bind(this)} name="compraMin" />}
-          label="Valor mínimo de compras"
-        />
+
       </FormGroup>
      
     </FormControl>
@@ -146,7 +227,7 @@ render(){
       {this.inputTypeFreteGratis(this.state.freteGratis)}
       {this.inputTypeValormin(this.state.compraMin)}
       <br/><br/><br/>
-      <button className="btn btn-info">
+      <button className="btn btn-info" onClick={this.cadastrarProduto}>
         Realizar alterações
       </button>
       </div>

@@ -8,28 +8,65 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
-
+import axios from 'axios'
 
 
 
 export default class cadastroDeProdutos extends React.Component {
+
+  componentDidMount(){
+    fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
+        res=>{
+          if (res.status===404) {
+            this.catalogo({
+              isUpdate: false
+            })
+          }
+          else{
+            res.json().then(
+            dados => {
+              console.log(dados)
+              this.setState({
+              id: dados._id,
+              cardapio: dados.url,
+              categorias: dados.categorias,
+              isUpdate: false
+            })}
+            )
+          }
+        }
+      )
+    }
+
+
   constructor(){
     super()
     this.state={
+      id: '',
       nome: '',
       img:'',
       preco: '',
       desc: '',
       nomeopc1: '',
       precopc1: '',
+      cardapio: '',
+      categoria:'',
+      categorias: [],
       opcionais: []
     }
-   
+    this.handleFileChange = this.handleFileChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeO = this.handleChangeO.bind(this);
-    
-  }
+    this.cadastrarProduto = this.cadastrarProduto.bind(this);
   
+  }
+  handleFileChange(event){
+    const files = event.target.files[0]
+    this.setState({
+        img: files
+    })
+}
+
   handleChange(event) {
 
     this.setState({ ...this.state, [event.target.name]: event.target.value })
@@ -37,6 +74,116 @@ export default class cadastroDeProdutos extends React.Component {
 handleChangeO(event) {
     this.setState({ ...this.state, opcionais: [{ [event.target.name]: event.target.value}] })
 }
+
+cadastrarProduto(){
+
+  var now = new Date().getTime();  
+  var data = { 
+    _id: this.state.id + now,
+    nome:this.state.nome,
+    preco: this.state.preco,
+    img: this.state._id + this.props.url,
+    descricao: this.state.desc,
+    categoria: this.state.categoria,
+    opcionais: this.state.opcionais,
+    cardapio: this.state.cardapio,
+    img: this.state.id + now
+  }
+
+//     _id: Number,
+//     nome: String,
+//     preco: Number,
+//     img: String,
+//     descricao: String,
+//     cardapio: String
+
+// }, {
+//     timestamps: true,
+//     collection: 'Produto'
+// });
+
+
+data = JSON.stringify(data)
+
+const files = this.state.img;
+if(files !== null){
+const formData = new FormData()
+formData.append('file',files)
+console.log(data)
+
+
+
+if(!this.state.isUpdate){
+
+if(files !== null){
+  const formData = new FormData()
+  formData.append('file',files)
+  fetch('http://localhost:5000/api/upload/'+this.state.id + now,{
+      method:"POST",
+      body:formData
+  }).then(alert(this.state.id + now)).catch((err)=>{alert(err)});
+}
+
+fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
+  method:"POST",
+  headers: {'Content-Type': 'application/json'},
+  body:data
+}).then(alert('Catálogo Cadastrado com sucesso'+this.state.cardapio))
+.catch(err => alert(err))
+window.location.href='/Planos'
+}
+else{
+const formData = new FormData()
+formData.append('file',files)
+fetch('http://191.252.177.239//api/upload/del/'+this.state.id,{
+  method:"DELETE"
+  });
+fetch('http://localhost:5000/api/upload/'+this.props.id,{
+  method:"POST",
+  body:formData
+  });
+fetch('http://localhost:5000/api/restaurante/'+this.props.id,{
+  method:"PUT",
+  headers: {'Content-Type': 'application/json'},
+  body:data
+}).then(alert('Catálogo alterado com sucesso'))
+.catch(err => alert(err))
+window.location.href='/dashboard'
+}
+}}
+
+
+
+
+
+
+
+handleSubmit = (e) => {
+        
+  console.log(JSON.stringify(this.state))
+  axios.post('http://localhost:5000/api/produto/'+this.state.cardapio, JSON.stringify(this.state),{
+      headers: {
+          'Content-Type': 'application/json'
+      },
+  })
+    .then(function (response) {
+        console.log(response)
+    })
+    .catch(function (error) {
+        console.log("caraio" +error)
+    }) 
+    window.location.href='/dashboard'
+
+
+
+  }
+ 
+
+
+
+
+
+
     render(){
         return (
         <div>
@@ -51,6 +198,7 @@ handleChangeO(event) {
            
             <form className="container">
             <div class="form-row">
+ 
     <div class="form-group col-md-6">
    
       <label for="inputEmail4"><h5>Nome do produto</h5></label>
@@ -59,7 +207,7 @@ handleChangeO(event) {
  
   <div class="form-group">
     <label for="exampleFormControlFile1"><h5>Foto do produto</h5></label>
-    <input type="file" name="img" value={this.state.img} onChange={this.handleChange} class="form-control-file" id="exampleFormControlFile1"/>
+    <input type="file" onChange={this.handleFileChange} class="form-control-file" id="exampleFormControlFile1"/>
   </div>
 
 <div class="form-group col-md-6">
@@ -70,8 +218,15 @@ handleChangeO(event) {
       <label for="inputEmail4"><h5>Descrição</h5></label>
       <input type="name" name="desc" value={this.state.desc} onChange={this.handleChange} class="form-control" id="inputEmail4"/>
     </div>
-   
-
+    {/* onChange={(e)=>{this.setState({...this.state, this.state.categoria: this.state.categoria.value})}} */}
+    <select class="form-control" value={this.state.categoria} onChange={(e)=>{this.setState({...this.state, categoria: e.target.value})}} >
+      {
+        this.state.categorias.map((cat)=>{
+        return(<option value={cat}>{cat}</option>)
+        })
+      }
+  
+</select>
   
     <h5>Opcionais</h5>
     
@@ -116,11 +271,11 @@ handleChangeO(event) {
   </div>
     <div className="radioinput1">
     <div class="form-check form-check-inline">
-  <a href="/cadastroDeProdutos" class="btn btn-primary">cadastrar outro produto</a></div>
+  <a href="/cadastroprodutos" class="btn btn-primary" onClick={this.cadastrarProduto}>cadastrar outro produto</a></div>
 
 
   <div class="form-check form-check-inline">
-  <a href="/cadastroDeProdutos" class="btn btn-primary">finalizar</a>
+  <a href="/dashboard" class="btn btn-primary" onClick={this.cadastrarProduto}>finalizar</a>
   </div>
   </div>
         </div></form><br/>

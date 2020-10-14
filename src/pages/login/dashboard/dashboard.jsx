@@ -2,13 +2,44 @@ import React,{useState} from 'react';
 
 import Header from '../../../components/header'
 
+import Cookies from "js-cookie";
 
 
 
-
-export default (props)=>  {
+class dashboard extends React.Component {
  
-      
+  logout() {
+    fetch("http://localhost:5000/api/logout/" + this.props.id, {
+      method: "PUT",
+    });
+    Cookies.remove("session");
+    window.location.href = "/";
+  }
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      Dados: {},
+    };
+    this.logout = this.logout.bind(this);
+  }
+
+
+  componentDidMount() {
+    fetch("http://localhost:5000/api/cliente/" + this.props.id)
+      .then((dados) => dados.json())
+      .then((data) => {
+        this.setState({
+          Dados: data,
+          isLoading: false,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  render() {
         return (
         <div>
                 <Header/>
@@ -19,7 +50,7 @@ export default (props)=>  {
          
             <h3 class="card-header info-color white-text text-center py-4" style={{color: "#f2f2f2", backgroundColor: "#0D2840", fontFamily: "'Anton', sans-serif", letterSpacing: "2pt"}}>Área do cliente</h3>
            <br/>
-        <h5 className="container">Você tem mais 15 dias de assinatura</h5>
+        <h5 className="container">Bem vindo {this.state.Dados.nome}</h5>
            <div className="radioinput1">
 
          </div>
@@ -55,4 +86,5 @@ export default (props)=>  {
         </div>
         )
         }
-  
+      }
+        export default dashboard;

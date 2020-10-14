@@ -60,7 +60,7 @@ export default function SimpleDialogDemo(props) {
         <DialogContent>
         
         {opc.map((aos) => (
-          <Mark name={aos.name} click={()=>{setMarkOpc1([...markOpc1, {name: aos.name, preco: aos.preco}])}} preco={aos.preco} />
+          <Mark name={aos.nomeopc} click={()=>{setMarkOpc1([...markOpc1, {name: aos.nomeopc, preco: aos.precoopc}])}} preco={aos.precoopc} />
         ))}
         </DialogContent>
         <DialogActions>
@@ -79,7 +79,7 @@ export default function SimpleDialogDemo(props) {
 
   
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+
 
   const handleClickOpen = () => {
     
@@ -88,7 +88,7 @@ export default function SimpleDialogDemo(props) {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
+ 
   };
 return (
         <div>
@@ -101,9 +101,9 @@ return (
                                             <div class="content-part-3-right-h4 ">{props.title}</div>
                                             <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>{props.preco}</i></div>
                                             <p>{props.descricao}</p>
-                                        <div class="margin_p3"><a href="#!" class="order-now" onClick={handleClickOpen}>Pedir agora</a>
-                                        <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} opcionais={props.opcionais} nome={props.title} MarcOpcionais={Children.markOpc} click={props.click}/>
-                               {console.log(markOpc1)}
+                                        <div class="margin_p3"><a class="order-now" onClick={handleClickOpen}>Pedir agora</a>
+                                        <SimpleDialog  open={open} onClose={handleClose} opcionais={props.opcionais} nome={props.title} MarcOpcionais={Children.markOpc} click={props.click}/>
+                           
                                         </div>
                                     </div>
                                     
