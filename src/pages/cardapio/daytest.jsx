@@ -38,28 +38,31 @@ const [showProducts, setShowProducts] = useState([])
 
 
     const [dados, setDados]=useState([])
-
-
+    const [dados1, setDados1]=useState({})
+    const [categorias1, ShowCategorias1]=useState()
     // const []
     useEffect(() => {
         axios.get('http://localhost:5000/api/produto/find/'+ props.match.params.url)
             .then(res => {
-                console.log(res.data);
+                
                 setShowProducts(res.data);
                 setLoad(true);
+
             })
             .catch(err => {
                 setError(err.message);
                 setLoad(true)
             })
     }, []);
-console.log(showProducts)
+
     useEffect(() => {
       axios.get('http://localhost:5000/api/restaurante/find/'+ props.match.params.url)
           .then(res => {
-              console.log(res.data);
+             
               setDados(res.data);
               setLoad(true);
+              setDados1(res.data[0])
+              ShowCategorias1(dados1.Categorias)
           })
           .catch(err => {
               setError(err.message);
@@ -68,18 +71,23 @@ console.log(showProducts)
   }, []);
 
 
-console.log(dados[0])
 
 
 
 
 
-console.log(dados.map(it=>it.nome))
 
 
-
-
-
+// async function pegarCategorias(dados1) {
+//   let v;
+//   try {
+//     v = await dados1.categorias; 
+//   } catch(e) {
+//     v = await v.map((iou)=>(iou));
+//   }
+//   return v;
+// }
+//produtosCat(v)
 
 
 
@@ -105,7 +113,7 @@ console.log(dados.map(it=>it.nome))
     var now = d.getHours() + "." + d.getMinutes();
 //Ao conectar com o db essa funcao verificara se o restaurante esta aberto ou nao
     function abertoFechado(){
-        if(now <= dados.fechamen  && now >= dados.abertura ){
+        if(now <= dados1.fechamen  && now >= dados1.abertura ){
             return(
             <a className="Aberto btn">Aberto</a>
             )
@@ -117,7 +125,23 @@ console.log(dados.map(it=>it.nome))
 
         }}
 
-
+        function abertoFechado1(){
+          if(now <= dados1.fechamen  && now >= dados1.abertura ){
+              return(
+                <a className="btn finalizar md-col-12" href={"https://api.whatsapp.com/send?phone="+dados1.telefone+"&text=%20*PEDIDO%20FACILITA%20AI*%0a"+carrinho.map((elis)=>{
+                  return(
+                    //{nome: date.title,preco: date.preco,codigo: date.codigo, opcionais: markOpc}
+                   ` --${elis.nome} %20 ${elis.preco}%0a` +elis.opcionais.map((k)=>{return(`OPCIONAIS%20 ${k.name} %20 ${k.preco} %20`)})+`%0a${Check}`
+                  )})  
+                  }> Realizar Pedido</a>
+              )
+          
+          }else {
+              return(
+                  <a className="Fechado btn"><strong>Estabelecimento fechado</strong></a>
+              )
+  
+          }}
         var {carrinho, setCarrinho} = useProdutos()
         var [carrinhotxt, useCarrinhotxt] = useState([])
         var preco1 =0;
@@ -138,13 +162,13 @@ console.log(dados.map(it=>it.nome))
 
 var zaponga = carrinho.map((zap)=>{
   return('https://api.whatsapp.com/send?phone=' +
-  dados.map((i2)=>i2.telefone) +'&text='+carrinho)
+  dados1.telefone +'&text='+carrinho)
 })
-console.log(carrinho)
+
 var [markOpc, setMarkOpc] = useState([])
   const opc = showProducts.opcionais;
   const clic = props.click
-console.log(markOpc)
+
         const lis = showProducts.map((date)=>{
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
@@ -158,6 +182,7 @@ console.log(markOpc)
 
         ///aqui estao os produtos!
     function produtosCat(props){
+
         return(  <div className={classes.root}>
             <Accordion id="bg-marrom">
               <AccordionSummary
@@ -175,7 +200,16 @@ console.log(markOpc)
                          
                           <hr/>
                      
-{lis}
+{showProducts.map((date)=>{
+  if(props == date.categoria){
+          return(
+            //Concertando codigos, tem de colocar a imagem no objeto
+            <Produto title={date.nome} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+              setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
+             
+            }}/>
+          );
+    }})}
                           </div>
                   </div>
       
@@ -212,7 +246,7 @@ console.log(markOpc)
       }
 
 
-    var VA = false;
+    var VA = dados1.valeAlimentacao;
     function valeAlimentacao(){
         if(VA === true){
             return(
@@ -233,18 +267,37 @@ console.log(markOpc)
 
 
 
+const list = dados1.categorias
 
 
+    // const functionWithPromise = item => { //a function that returns a promise
+    //   return Promise.resolve('ok')
+    // }
+    
+    // const anAsyncFunction = async item => {
+    //   return functionWithPromise(item)
+    // }
+    
+    // const getData = async () => {
+    //   return Promise.all(list.map(item => anAsyncFunction(item)))
+    // }
+    
+    // getData().then(data => {
+    //   console.log(data)
+    // })
 
 
+function  Categoriaso(list){
+  if(load){
+          if(list == undefined){ return ("CARREGANDO...")}
+          else{
+           return (list.map((d1d)=>produtosCat(d1d)))
+          }
+        }else return ("CARREGANDO...")
+}
 
 
-
-
-
-
-
-
+  console.log(list);
 
 
 
@@ -267,9 +320,9 @@ console.log(markOpc)
     
     <div class="col-md-5 col-sm-6 col-xs-12">
     
-   <div class="content-part-1-left-h3">{dados.map((i3)=>i3.nome)}</div>
+   <div class="content-part-1-left-h3">{dados1.nome}</div>
         <div class="content-part-1-left-p">
-        {dados.map((i4)=>i4.desc)}
+        {dados1.desc}
         
         </div>
         
@@ -278,10 +331,10 @@ console.log(markOpc)
     
 </div>
             <br/>
-{/* Produtos */}
+{/* Produtos{igu.map((joj)=>(produtosCat(joj)))} */}
 
-{dados.map((i10)=>produtosCat(i10.categorias.map((i11)=>i11)))}
-{produtosCat('hotdog')}
+
+{Categoriaso(dados1.categorias)}
 <div className="radioinput1">
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
@@ -305,12 +358,8 @@ console.log(markOpc)
 {pago}
 <br/>
 <h4 className="radioinput">total: R$ {preco1}</h4>
-<a className="btn finalizar" href={"https://api.whatsapp.com/send?phone="+dados.map((i9)=>i9.telefone)+"&text=%20*PEDIDO%20FACILITA%20AI*%0a"+carrinho.map((elis)=>{
-    return(
-      //{nome: date.title,preco: date.preco,codigo: date.codigo, opcionais: markOpc}
-     ` --${elis.nome} %20 ${elis.preco}%0a` +elis.opcionais.map((k)=>{return(`OPCIONAIS%20 ${k.name} %20 ${k.preco} %20`)})+`%0a${Check}`
-    )})  
-    }> Realizar Pedido</a>
+
+{abertoFechado1()}
 </div></ProdutosProvider>
     )
 }

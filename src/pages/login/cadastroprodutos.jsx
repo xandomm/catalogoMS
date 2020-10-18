@@ -10,10 +10,10 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 import axios from 'axios'
 
-
+var now = new Date().getTime();
 
 export default class cadastroDeProdutos extends React.Component {
-
+ 
   componentDidMount(){
     fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
         res=>{
@@ -23,13 +23,15 @@ export default class cadastroDeProdutos extends React.Component {
             })
           }
           else{
+            
             res.json().then(
             dados => {
               console.log(dados)
               this.setState({
-              id: dados._id,
+              id: dados._id +now,
               cardapio: dados.url,
               categorias: dados.categorias,
+              
               isUpdate: false
             })}
             )
@@ -77,17 +79,16 @@ handleChangeO(event) {
 
 cadastrarProduto(){
 
-  var now = new Date().getTime();  
+
   var data = { 
-    _id: this.state.id + now,
+    _id: this.state.id ,
     nome:this.state.nome,
     preco: this.state.preco,
-    img: this.state._id + this.props.url,
     descricao: this.state.desc,
     categoria: this.state.categoria,
     opcionais: this.state.opcionais,
     cardapio: this.state.cardapio,
-    img: this.state.id + now
+    img: this.state.id 
   }
 
 //     _id: Number,
@@ -113,15 +114,15 @@ console.log(data)
 
 
 
-if(!this.state.isUpdate){
+
 
 if(files !== null){
   const formData = new FormData()
   formData.append('file',files)
-  fetch('http://localhost:5000/api/upload/'+this.state.id + now,{
+  fetch('http://localhost:5000/api/upload/'+this.state.id,{
       method:"POST",
       body:formData
-  }).then(alert(this.state.id + now)).catch((err)=>{alert(err)});
+  }).then(alert(this.state.id)).catch((err)=>{alert(err)});
 }
 
 fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
@@ -132,25 +133,8 @@ fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
 .catch(err => alert(err))
 window.location.href='/Planos'
 }
-else{
-const formData = new FormData()
-formData.append('file',files)
-fetch('http://191.252.177.239//api/upload/del/'+this.state.id,{
-  method:"DELETE"
-  });
-fetch('http://localhost:5000/api/upload/'+this.props.id,{
-  method:"POST",
-  body:formData
-  });
-fetch('http://localhost:5000/api/restaurante/'+this.props.id,{
-  method:"PUT",
-  headers: {'Content-Type': 'application/json'},
-  body:data
-}).then(alert('Catálogo alterado com sucesso'))
-.catch(err => alert(err))
-window.location.href='/dashboard'
+
 }
-}}
 
 
 

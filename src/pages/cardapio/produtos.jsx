@@ -95,7 +95,8 @@ return (
  <div class="col-md-12 col-sm-12 col-xs-12 productTest">
                         <div class="row content-part-3-inner">
                             <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                                <img src={Food} class="img-responsive img" alt="Menu Item"/>
+                                {/* <img src={require("../../../public/uploads/"+props.img+".png")} class="img-responsive img" alt="Menu Item"/> */}
+                                {console.log(props.img)}
                             </div>
                                     <div class="col-md-7 col-sm-7 col-xs-12 productTest">
                                             <div class="content-part-3-right-h4 ">{props.title}</div>
