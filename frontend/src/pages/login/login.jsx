@@ -1,57 +1,13 @@
 import React from 'react';
+import { withRouter, Link } from 'react-router-dom';
+
+import withState from './../../utils/withState';
 
 import Header from '../../components/header'
-import Cookies from 'js-cookie'
-class SignUp extends React.Component {
-  constructor(){
-    super()
-    this.state={
-      email:"",
-      senha:""
-    }
-    this.handleChange = this.handleChange.bind(this);
-    this.login = this.login.bind(this);
-  }
 
-  login(event){
-    var data = {
-      email: this.state.email,
-      senha: this.state.senha,
-    }
-    data = JSON.stringify(data)
-    event.preventDefault();
+const Login = ({ store, actions }) => {
+ 
 
-    fetch("http://localhost:5000/api/login",{
-      method:"POST",
-      headers: {'Content-Type': 'application/json'},
-      body:data
-        }).then(
-          async res =>{
-            if(res.status===401){
-              document.getElementById("incorrect").innerHTML = "E-mail ou senha incorretos"
-            }
-            else{
-              const object = await res.json()
-              Cookies.set('name', object.session, { expires: 7 })
-              window.location.href='/dashboard'
-            }
-          }
-        )
-      
-  }
-
-  handleChange(event){
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-        [name]:value
-    });
-}
-
-
-    render(){
         return (
             <div>
                 <Header/>
@@ -64,23 +20,24 @@ class SignUp extends React.Component {
 
 <div class="card-body container px-lg-5 pt-0" style={{ backgroundColor: "#F2f2f2"}}>
 <br/><br/><br/>
-<span id="incorrect" style={{color:'red'}}></span>
-  <form class="text-center" style={{color: "#757575"}} onSubmit={this.login}>
+<span id="incorrect" style={{color:'red'}}>{store.error && <p className="login__error">{store.error}</p>}</span>
+  <form class="text-center" style={{color: "#757575"}}  onSubmit={actions.onLogin}>
 
     
     <div class="md-form">
     <label for="materialLoginFormEmail">E-mail</label>
-      <input type="email" id="materialLoginFormEmail" value={this.state.email}
-            name="email"   onChange={this.handleChange} class="form-control"/>
+      <input type="email" id="materialLoginFormEmail" value={store.email || ''}
+                    name="email"
+                    onChange={e => actions.handleChange(e)} class="form-control"/>
       
     </div>
 
     
     <div class="md-form">
     <label for="materialLoginFormPassword">Senha</label>
-      <input type="password" id="materialLoginFormPassword" onChange={this.handleChange}
-              value={this.state.senha}
-              name="senha" class="form-control"/>
+      <input type="password" id="materialLoginFormPassword" value={store.password || ''}
+                    name="password"
+                    onChange={e => actions.handleChange(e)} class="form-control"/>
       
     </div>
 
@@ -119,5 +76,4 @@ class SignUp extends React.Component {
 
 
 
-}
-export default SignUp
+    export default withRouter(withState(Login));

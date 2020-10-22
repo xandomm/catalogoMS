@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const https = require('https');
 const fs = require('fs');
 
+const { userRouter } = require('./backend/routes/index');
 //const privateKey = fs.readFileSync('/etc/letsencrypt/live/lojasfacil.com/privkey.pem', 'utf8');
 //const certificate = fs.readFileSync('/etc/letsencrypt/live/lojasfacil.com/cert.pem', 'utf8');
 //const ca = fs.readFileSync('/etc/letsencrypt/live/lojasfacil.com/chain.pem', 'utf8');
@@ -47,6 +48,7 @@ require('./backend/routes/restauranteRoute')(app);
 //  require('./backend/controllers/PaymentController')(app);
 //  require('./backend/controllers/mensalidadeController')(app);
  require('./backend/routes/uploadRoute')(app);
+ app.use('/api', userRouter);
 // require('./api/routes/pedidoRoutes.js')(app);
 
 

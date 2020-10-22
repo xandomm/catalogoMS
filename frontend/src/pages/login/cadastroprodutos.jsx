@@ -80,16 +80,7 @@ handleChangeO(event) {
 cadastrarProduto(){
 
 
-  var data = { 
-    _id: this.state.id ,
-    nome:this.state.nome,
-    preco: this.state.preco,
-    descricao: this.state.desc,
-    categoria: this.state.categoria,
-    opcionais: this.state.opcionais,
-    cardapio: this.state.cardapio,
-    img: this.state.id 
-  }
+
 
 //     _id: Number,
 //     nome: String,
@@ -104,26 +95,30 @@ cadastrarProduto(){
 // });
 
 
-data = JSON.stringify(data)
+
 
 const files = this.state.img;
 if(files !== null){
+  var data = { 
+    _id: this.state.id ,
+    nome:this.state.nome,
+    preco: this.state.preco,
+    descricao: this.state.desc,
+    categoria: this.state.categoria,
+    opcionais: this.state.opcionais,
+    cardapio: this.state.cardapio,
+    img: this.state.id 
+  }
+  
 const formData = new FormData()
 formData.append('file',files)
 console.log(data)
 
-
-
-
-
-if(files !== null){
-  const formData = new FormData()
-  formData.append('file',files)
   fetch('http://localhost:5000/api/upload/'+this.state.id,{
       method:"POST",
       body:formData
   }).then(alert(this.state.id)).catch((err)=>{alert(err)});
-}
+
 
 fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
   method:"POST",
@@ -132,6 +127,26 @@ fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
 }).then(alert('Catálogo Cadastrado com sucesso'+this.state.cardapio))
 .catch(err => alert(err))
 window.location.href='/Planos'
+} else {
+  var data = { 
+    _id: this.state.id ,
+    nome:this.state.nome,
+    preco: this.state.preco,
+    descricao: this.state.desc,
+    categoria: this.state.categoria,
+    opcionais: this.state.opcionais,
+    cardapio: this.state.cardapio,
+    img: ''
+  }
+
+  fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
+    method:"POST",
+    headers: {'Content-Type': 'application/json'},
+    body:data
+  }).then(alert('Catálogo Cadastrado com sucesso'+this.state.cardapio))
+  .catch(err => alert(err))
+  window.location.href='/Planos'
+
 }
 
 }

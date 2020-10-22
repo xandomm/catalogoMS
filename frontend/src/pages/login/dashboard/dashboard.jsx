@@ -4,42 +4,16 @@ import Header from '../../../components/header'
 
 import Cookies from "js-cookie";
 
+import withState from '../../../utils/withState';
 
-
-class dashboard extends React.Component {
- 
-  logout() {
-    fetch("http://localhost:5000/api/logout/" + this.props.id, {
-      method: "PUT",
-    });
-    Cookies.remove("session");
-    window.location.href = "/";
-  }
-
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      Dados: {},
-    };
-    this.logout = this.logout.bind(this);
-  }
-
-
+class Dashboard extends React.Component {
   componentDidMount() {
-    fetch("http://localhost:5000/api/cliente/" + this.props.id)
-      .then((dados) => dados.json())
-      .then((data) => {
-        this.setState({
-          Dados: data,
-          isLoading: false,
-        });
-      })
-      .catch((err) => console.log(err));
-  }
+    this.props.actions.retrieveUser();
+}
 
   render() {
+    const { user } = this.props.store;
+    console.log(user)
         return (
         <div>
                 <Header/>
@@ -50,7 +24,7 @@ class dashboard extends React.Component {
          
             <h3 class="card-header info-color white-text text-center py-4" style={{color: "#f2f2f2", backgroundColor: "#0D2840", fontFamily: "'Anton', sans-serif", letterSpacing: "2pt"}}>Área do cliente</h3>
            <br/>
-        <h5 className="container">Bem vindo {this.state.Dados.nome}</h5>
+        <h5 className="container">Bem vindo {user.name}</h5>
            <div className="radioinput1">
 
          </div>
@@ -87,4 +61,4 @@ class dashboard extends React.Component {
         )
         }
       }
-        export default dashboard;
+      export default withState(Dashboard);

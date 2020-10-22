@@ -1,21 +1,12 @@
-import React, { Children } from 'react';
-
-import Food from '../../image/food.jpg'
+import React, { Children, useState } from 'react';
 import './cardapio.css';
-
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-
-import { blue } from '@material-ui/core/colors';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import TextField from '@material-ui/core/TextField';
-import { useState } from 'react';
+import imageExists from 'image-exists';
 
 
 
@@ -31,7 +22,7 @@ const emails = ['username@gmail.com', 'user02@gmail.com'];
 export default function SimpleDialogDemo(props) {
 
 
-
+  const [state, setState] = useState('')
 
   var [markOpc1, setMarkOpc1] = [props.markOpc, props.setMarkOpc]
   const opc = props.opcionais;
@@ -90,13 +81,46 @@ export default function SimpleDialogDemo(props) {
     setOpen(false);
  
   };
+
+
+  
+//   let loadImage = function(variable){
+//     var image = new Image();
+//     var url_image = "../../../public/uploads/"+props.img+".png";
+//     image.src = url_image;
+//     if (image.width == 0) {
+//        return <img src={require("../../../public/uploads/"+props.img+".png")} class="img-responsive img" alt="Menu Item"/>;
+//     } else {
+//        return <img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>;
+//     }
+//  }
+
+//  const src1 = "../../../public/uploads/"+props.img+".png"
+
+// function imageexists(){
+//   try{
+//     const src1 = "../../../public/uploads/"+props.img+".png"
+//     return  <img src={require("../../../public/uploads/"+props.img+".png")} onError={(e)=>(this.src={require('')})} class="img-responsive img" alt="Menu Item"/>
+// }
+// catch(err){
+//     //Do whatever you want when the image failed to load here
+//     const src1 = "./noimg.jpg"
+//     return   ()=> <img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>
+// }
+
+// };
+
+
+
+
 return (
         <div>
  <div class="col-md-12 col-sm-12 col-xs-12 productTest">
                         <div class="row content-part-3-inner">
                             <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                                {/* <img src={require("../../../public/uploads/"+props.img+".png")} class="img-responsive img" alt="Menu Item"/> */}
-                                {console.log(props.img)}
+                            <img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>
+                              
+                      
                             </div>
                                     <div class="col-md-7 col-sm-7 col-xs-12 productTest">
                                             <div class="content-part-3-right-h4 ">{props.title}</div>
