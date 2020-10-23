@@ -9,14 +9,15 @@ class PrivateRoute extends Component {
             store: { isLoggedIn },
             component: Component,
             redirectTo = '/login',
+            
             ...rest
         } = this.props;
-
+        console.log(this.props)
         return (
             <Route
                 render={props =>
                     isLoggedIn ? (
-                        <Component id={this.props.id} {...props} />
+                        <Component id={this.props.store.id} {...props} />
                     ) : (
                         <Redirect to={redirectTo} />
                     )

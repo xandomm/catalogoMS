@@ -13,7 +13,7 @@ class Dashboard extends React.Component {
 
   render() {
     const { user } = this.props.store;
-    console.log(user)
+    console.log(this.props.id)
         return (
         <div>
                 <Header/>

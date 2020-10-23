@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 
 const cadastroSchema = mongoose.Schema({
-    _id: Number,
+    _id: String,
     nome: String,
     plano: String,
     sobrenome: String ,

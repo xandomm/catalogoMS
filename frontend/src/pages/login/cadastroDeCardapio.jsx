@@ -12,8 +12,9 @@ class cadastrarCardapio extends React.Component {
   componentDidMount(){
     fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
       res=>{
-        if (res.status===404) {
+        if (res.status!==200) {
           this.setState({
+            _id: this.props.id,
             isUpdate: false
           })
         }
@@ -70,7 +71,7 @@ class cadastrarCardapio extends React.Component {
       img: "",
       valeRefeicao: null,
       url:"",
-      isUpdate: true
+      isUpdate: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
@@ -101,7 +102,7 @@ handleChange(event){
     var data = { 
       _id:this.props.id,
       nome:this.state.nome,
-      telefone:this.state.telefone,
+      telefone:'55'+this.state.telefone,
       endereco:this.state.endereco,
       valeRefeicao: this.state.valeRefeicao,
       abertura: this.state.abertura,
@@ -209,7 +210,7 @@ handleChange(event){
 <div class="form-row">
 <label for="categorias1"><h5>categorias</h5></label>
 <ul>
-        {this.state.categorias.map((eee)=>{return(<li>{eee}</li>)})}
+        {this.state.categorias.length!==0? (this.state.categorias.map((eee)=>{return(<li>{eee}</li>)})):(<li>Ainda não existe nenhuma categoria</li>)}
 </ul>
 <div className="input-group">
 

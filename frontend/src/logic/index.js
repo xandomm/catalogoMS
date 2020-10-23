@@ -156,7 +156,7 @@ const logic = {
 
             .then(res => {
                 if (res.status === 200) {
-                    console.log(this._userId)
+                    console.log(this._userId())
                     return res;
                     console.log(this._userId)
                 }

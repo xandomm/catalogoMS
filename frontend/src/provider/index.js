@@ -8,7 +8,7 @@ class AuthProvider extends Component {
     state = {
         isLoggedIn: logic.isLoggedIn(),
         user: {},
-        id:'',
+        id:logic._userId(),
         name: '',
         email: '',
         password: '',
@@ -86,6 +86,7 @@ class AuthProvider extends Component {
     retrieveUser = () => {
         logic.retrieveUser().then(user => {
             this.setState({
+            
                 user
             });
         });
