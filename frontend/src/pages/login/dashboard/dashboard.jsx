@@ -9,6 +9,7 @@ import withState from '../../../utils/withState';
 class Dashboard extends React.Component {
   componentDidMount() {
     this.props.actions.retrieveUser();
+    
 }
 
   render() {
@@ -51,7 +52,7 @@ class Dashboard extends React.Component {
     
 
   <div class="form-check form-check-inline">
-  <a href="/cadastroDeProdutos" class="btn btn-primary">Fazer logout</a>
+  <a href="/login" onClick={()=>this.props.actions.onLogout()} class="btn btn-primary">Fazer logout</a>
   </div>
   </div>
         </div></form><br/>

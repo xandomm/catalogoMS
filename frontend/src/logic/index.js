@@ -137,7 +137,7 @@ const logic = {
      */
     logout() {
         delete this.token;
-        delete this.userId;
+       
 
         sessionStorage.clear();
     },

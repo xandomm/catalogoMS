@@ -38,7 +38,7 @@ const [showProducts, setShowProducts] = useState([])
 
 
     const [dados, setDados]=useState([])
-    const [dados1, setDados1]=useState({})
+    const [dados1, setDados1]=useState({ })
     const [categorias1, ShowCategorias1]=useState()
     // const []
     useEffect(() => {
@@ -58,7 +58,7 @@ const [showProducts, setShowProducts] = useState([])
     useEffect(() => {
       axios.get('http://localhost:5000/api/restaurante/find/'+ props.match.params.url)
           .then(res => {
-             
+            setDados1(res.data[0])
               setDados(res.data);
               setLoad(true);
               setDados1(res.data[0])
@@ -88,11 +88,6 @@ const [showProducts, setShowProducts] = useState([])
 //   return v;
 // }
 //produtosCat(v)
-
-
-
-
-
 
 
 
@@ -246,8 +241,7 @@ var [markOpc, setMarkOpc] = useState([])
       }
 
 
-    var VA = dados1.valeAlimentacao;
-    function valeAlimentacao(){
+    function valeAlimentacao(VA){
         if(VA === true){
             return(
                 <div class="alert alert-primary" role="alert">
@@ -267,7 +261,7 @@ var [markOpc, setMarkOpc] = useState([])
 
 
 
-const list = dados1.categorias
+
 
 
     // const functionWithPromise = item => { //a function that returns a promise
@@ -297,9 +291,16 @@ function  Categoriaso(list){
 }
 
 
-  console.log(list);
 
 
+  function  Categoriasoi(img){
+    if(load){
+            if(img == undefined){ return ("CARREGANDO...")}
+            else{
+             return <img className="LogoCardapio" src={require('./../../../public/uploads/'+dados1._id+'.png')}/>
+            }
+          }else return ("CARREGANDO...")
+  }
 
 
 
@@ -309,12 +310,14 @@ function  Categoriaso(list){
     <ProdutosProvider>
         <div>
             <div className="Headercardapio">
-            <img className="LogoCardapio" src={LogoFake}/>
+          { Categoriasoi(dados1._id) }
+
+           
             
             {abertoFechado()}
             
             </div>
-            {valeAlimentacao()}
+            {valeAlimentacao(dados1.valeRefeicao)}
             <div class=" descricaorestaurante">
 {/* descrição do lugar */}
     

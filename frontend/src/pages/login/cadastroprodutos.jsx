@@ -28,10 +28,10 @@ export default class cadastroDeProdutos extends React.Component {
             dados => {
               console.log(dados)
               this.setState({
-              id: dados._id +now,
+              _id: now,
               cardapio: dados.url,
               categorias: dados.categorias,
-              
+              categoria: dados.categorias[0],
               isUpdate: false
             })}
             )
@@ -44,9 +44,9 @@ export default class cadastroDeProdutos extends React.Component {
   constructor(){
     super()
     this.state={
-      id: '',
+      _id: '',
       nome: '',
-      img:'',
+      img:null,
       preco: '',
       desc: '',
       nomeopc1: '',
@@ -99,51 +99,53 @@ cadastrarProduto(){
 
 const files = this.state.img;
 if(files !== null){
+
   var data = { 
-    _id: this.state.id ,
+    _id: this.state._id ,
     nome:this.state.nome,
     preco: this.state.preco,
     descricao: this.state.desc,
     categoria: this.state.categoria,
     opcionais: this.state.opcionais,
     cardapio: this.state.cardapio,
-    img: this.state.id 
+    img: this.state._id 
   }
-  
+
 const formData = new FormData()
 formData.append('file',files)
 console.log(data)
-
-  fetch('http://localhost:5000/api/upload/'+this.state.id,{
+  data= JSON.stringify(data)
+  fetch('http://localhost:5000/api/upload/'+this.state._id,{
       method:"POST",
       body:formData
-  }).then(alert(this.state.id)).catch((err)=>{alert(err)});
+  }).then(alert(this.state._id)).catch((err)=>{alert(err)});
 
 
 fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
   method:"POST",
   headers: {'Content-Type': 'application/json'},
   body:data
-}).then(alert('Catálogo Cadastrado com sucesso'+this.state.cardapio))
+}).then(alert('Produto Cadastrado com sucesso '+data._id))
 .catch(err => alert(err))
 window.location.href='/Planos'
 } else {
   var data = { 
-    _id: this.state.id ,
+    _id: this.state._id ,
     nome:this.state.nome,
     preco: this.state.preco,
-    descricao: this.state.desc,
+    desc: this.state.desc,
     categoria: this.state.categoria,
     opcionais: this.state.opcionais,
     cardapio: this.state.cardapio,
     img: ''
   }
-
+  console.log(data)
+  data= JSON.stringify(data)
   fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
     method:"POST",
     headers: {'Content-Type': 'application/json'},
     body:data
-  }).then(alert('Catálogo Cadastrado com sucesso'+this.state.cardapio))
+  }).then(alert('Catálogo Cadastrado com sucesso'+data))
   .catch(err => alert(err))
   window.location.href='/Planos'
 

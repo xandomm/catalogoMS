@@ -12,7 +12,8 @@ class cadastrarCardapio extends React.Component {
   componentDidMount(){
     fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
       res=>{
-        if (res.status!==200) {
+        if (res.status!==200 && res.status!==201) {
+          console.log(res.status)
           this.setState({
             _id: this.props.id,
             isUpdate: false

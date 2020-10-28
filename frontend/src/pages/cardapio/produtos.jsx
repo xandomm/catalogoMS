@@ -83,6 +83,15 @@ export default function SimpleDialogDemo(props) {
   };
 
 
+
+  const tryRequire = (path) => {
+    try {
+     return require(`${path}`);
+    } catch (err) {
+     return null;
+    }
+  };
+
   
 //   let loadImage = function(variable){
 //     var image = new Image();
@@ -118,7 +127,7 @@ return (
  <div class="col-md-12 col-sm-12 col-xs-12 productTest">
                         <div class="row content-part-3-inner">
                             <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                            <img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>
+                 {props.img == ""?  (<img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>):(<img src={require("../../../public/uploads/"+props.img+".png")}  class="img-responsive img" alt="Menu Item"/>)}
                               
                       
                             </div>
