@@ -15,7 +15,7 @@ var now = new Date().getTime();
 export default class cadastroDeProdutos extends React.Component {
  
   componentDidMount(){
-    fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
+    fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id).then(
         res=>{
           if (res.status===404) {
             this.catalogo({

@@ -42,7 +42,7 @@ const [showProducts, setShowProducts] = useState([])
     const [categorias1, ShowCategorias1]=useState()
     // const []
     useEffect(() => {
-        axios.get('http://localhost:5000/api/produto/find/'+ props.match.params.url)
+        axios.get('http://35.198.27.37:5000/api/produto/find/'+ props.match.params.url)
             .then(res => {
                 
                 setShowProducts(res.data);
@@ -56,7 +56,7 @@ const [showProducts, setShowProducts] = useState([])
     }, []);
 
     useEffect(() => {
-      axios.get('http://localhost:5000/api/restaurante/find/'+ props.match.params.url)
+      axios.get('http://35.198.27.37:5000/api/restaurante/find/'+ props.match.params.url)
           .then(res => {
             setDados1(res.data[0])
               setDados(res.data);

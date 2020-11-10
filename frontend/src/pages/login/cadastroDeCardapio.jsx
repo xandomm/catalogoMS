@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 class cadastrarCardapio extends React.Component {
 
   componentDidMount(){
-    fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
+    fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id).then(
       res=>{
         if (res.status!==200 && res.status!==201) {
           console.log(res.status)

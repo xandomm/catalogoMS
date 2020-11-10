@@ -28,7 +28,7 @@ export default class dadospagamento extends React.Component {
 
 
   componentDidMount(){
-    fetch('http://localhost:5000/api/restaurante/'+this.props.id).then(
+    fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id).then(
       res=>{
         if (res.status===404) {
           this.setState({
@@ -125,7 +125,7 @@ export default class dadospagamento extends React.Component {
 
 
      
-      fetch('http://localhost:5000/api/restaurante/'+this.props.id,{
+      fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id,{
         method:"PUT",
         headers: {'Content-Type': 'application/json'},
         body:data
