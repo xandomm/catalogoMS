@@ -6,6 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import "aos/dist/aos.css"
 import { BrowserRouter as Router } from 'react-router-dom';
 import AuthProvider from './provider/';
+
+
+var url_backend = 'http://localhost:5000'
 ReactDOM.render(
   <AuthProvider>
   <Router>

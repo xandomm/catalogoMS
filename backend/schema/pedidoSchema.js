@@ -1,16 +1,18 @@
 const mongoose = require('mongoose')
 
 
-const cadastroSchema = mongoose.Schema({
-    _id: String,
-    nomedocartao: String,
-    dataExpiracao: String ,
-    CA: String,
-    CVV: String,
-    cpf: Number
+const pedidoSchema = mongoose.Schema({
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        auto: true
+    },
+    pedido: Array,
+    cardapio: String ,
+    check: String,
+    Total: Number
     
 }, {
     timestamps: true
 });
 
-module.exports = mongoose.model('cadastro', cadastroSchema)
+module.exports = mongoose.model('pedido', pedidoSchema)

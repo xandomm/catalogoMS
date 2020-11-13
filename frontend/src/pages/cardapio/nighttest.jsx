@@ -16,20 +16,20 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Pagarbutton from './pagarButton'
+
 
 
 import ProdutosProvider, {useProdutos} from '../../Context/productContext'
 
 
-import Produto from './produtos'
+import Produto2 from './produtos2'
 import data from './data';
+import Pagarbutton from './pagarButton'
 
-
+var backendURL = 'http://35.198.27.37'
 
 
 export default (props)=>{
-
   const [open, setOpen] = React.useState(false)
   const [txt, setTxt] = useState('')
     const [load, setLoad] = useState(false);
@@ -43,7 +43,7 @@ const [showProducts, setShowProducts] = useState([])
     const [categorias1, ShowCategorias1]=useState()
     // const []
     useEffect(() => {
-        axios.get('http://35.198.27.37/api/produto/find/'+ props.match.params.url)
+        axios.get(backendURL+'/api/produto/find/'+ props.match.params.url)
             .then(res => {
                 
                 setShowProducts(res.data);
@@ -57,7 +57,7 @@ const [showProducts, setShowProducts] = useState([])
     }, []);
 
     useEffect(() => {
-      axios.get('http://35.198.27.37/api/restaurante/find/'+ props.match.params.url)
+      axios.get(backendURL+'/api/restaurante/find/'+ props.match.params.url)
           .then(res => {
             setDados1(res.data[0])
               setDados(res.data);
@@ -79,30 +79,26 @@ const [showProducts, setShowProducts] = useState([])
 
 
 
-// async function pegarCategorias(dados1) {
-//   let v;
-//   try {
-//     v = await dados1.categorias; 
-//   } catch(e) {
-//     v = await v.map((iou)=>(iou));
-//   }
-//   return v;
-// }
-//produtosCat(v)
+
+//postar pedido
+
+function postPedido(){
+        var pedido ={
+
+        }
+}
 
 
 
 
 
 
+//check?
+var [Check, setCheck] = useState({})
+var handleChange1=(event)=> {
 
-
-
-
-
-
-
-
+  setCheck(event.target.value )
+}
 
 
     var d = new Date();
@@ -124,7 +120,7 @@ const [showProducts, setShowProducts] = useState([])
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                <Pagarbutton  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                  <Pagarbutton  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {
@@ -163,7 +159,7 @@ var [markOpc, setMarkOpc] = useState([])
         const lis = showProducts.map((date)=>{
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.nome} preco={date.preco} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+            <Produto2 className="noturno" title={date.nome} preco={date.preco} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
               setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>
@@ -175,7 +171,7 @@ var [markOpc, setMarkOpc] = useState([])
     function produtosCat(props){
 
         return(  <div className={classes.root}>
-            <Accordion id="bg-marrom">
+            <Accordion id="bg-marrom2">
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
@@ -195,7 +191,7 @@ var [markOpc, setMarkOpc] = useState([])
   if(props == date.categoria){
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.nome} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+            <Produto2 title={date.nome} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
               setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>
@@ -256,27 +252,6 @@ var [markOpc, setMarkOpc] = useState([])
 
 
 
-
-
-
-
-    // const functionWithPromise = item => { //a function that returns a promise
-    //   return Promise.resolve('ok')
-    // }
-    
-    // const anAsyncFunction = async item => {
-    //   return functionWithPromise(item)
-    // }
-    
-    // const getData = async () => {
-    //   return Promise.all(list.map(item => anAsyncFunction(item)))
-    // }
-    
-    // getData().then(data => {
-    //   console.log(data)
-    // })
-
-
 function  Categoriaso(list){
   if(load){
           if(list == undefined){ return ("CARREGANDO...")}
@@ -291,9 +266,9 @@ function  Categoriaso(list){
 
   function  Categoriasoi(img){
     if(load){
-            if(img == undefined){ return ("CARREGANDO...")}
+            if(img == undefined && img==null){ return ("CARREGANDO...")}
             else{
-             return <img className="LogoCardapio" src={require('./../../../public/uploads/'+dados1._id+'.png')}/>
+             return <img className="LogoCardapio" src={`${backendURL}/static/${dados1._id}.png`}/>
             }
           }else return ("CARREGANDO...")
   }
@@ -304,7 +279,7 @@ function  Categoriaso(list){
 
    return(
     <ProdutosProvider>
-        <div>
+        <div className="cardapio2">
             <div className="Headercardapio">
           { Categoriasoi(dados1._id) }
 
@@ -314,7 +289,7 @@ function  Categoriaso(list){
             
             </div>
             {valeAlimentacao(dados1.valeRefeicao)}
-            <div class=" descricaorestaurante">
+            <div class=" descricaorestaurante2">
 {/* descrição do lugar */}
     
     <div class="col-md-5 col-sm-6 col-xs-12">
@@ -334,26 +309,29 @@ function  Categoriaso(list){
 
 
 {Categoriaso(dados1.categorias)}
-<div className="radioinput1">
+
+<form>
+<div className="radioinput">
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Retirar no local" checked={Check==="Retirar no local"} onClick={handleChange1} name="local"/>
   <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Entregar" checked={Check=== "Entregar"} onClick={handleChange1} name="local1"/>
   <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+ 
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Comer no local" checked={Check=="Comer no local"} onClick={handleChange1} name="local2"/>
   <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
 </div>
 
-
 </div>
+</form>
 <br/>
 <br/>
 {/* <a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a> */}
-
+{console.log(carrinho)}
 {pago}
 <br/>
 <h4 className="radioinput">total: R$ {preco1}</h4>

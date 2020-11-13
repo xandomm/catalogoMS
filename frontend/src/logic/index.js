@@ -4,7 +4,7 @@
 const { validateEmail } = require('./../utils/validate-email');
 
 const logic = {
-    _url: 'http://35.198.27.37:5000',
+    _url: 'http://35.198.27.37',
 
     /**
      *

@@ -45,12 +45,13 @@ require('./backend/routes/produtoRoute')(app);
 require('./backend/routes/restauranteRoute')(app);
  require('./backend/routes/cadastroRoute')(app);
  require('./backend/routes/authRoute.js')(app);
+ require('./backend/routes/pedidoRoute')(app);
 //  require('./backend/controllers/PaymentController')(app);
 //  require('./backend/controllers/mensalidadeController')(app);
  require('./backend/routes/uploadRoute')(app);
  app.use('/api', userRouter);
 // require('./api/routes/pedidoRoutes.js')(app);
-
+app.use('/static', express.static('./backend/uploads'))
 
 //const httpsServer = https.createServer(credentials, app);
 

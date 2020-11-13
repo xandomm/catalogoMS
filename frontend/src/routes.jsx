@@ -15,7 +15,8 @@ import Dashboard from './pages/login/dashboard/dashboard';
 import daytest from './pages/cardapio/daytest';
 
 import withState from './utils/withState';
-
+import nighttest from './pages/cardapio/nighttest';
+import dadospedodos from './pages/login/dashboard/dadospedidos'
 
 class App extends Component {
     componentDidMount() {
@@ -44,8 +45,8 @@ class App extends Component {
                         <Route path="/cardapio" exact component={cardapio}/>
                         <Route path="/cardapioNoturno" component={cardapioNoturno}/>
                         <Route path="/d/:url" component={daytest}/>
-                        <Route path="/n/:url" component={cardapioNoturno}/>
-               
+                        <Route path="/n/:url" component={nighttest}/>
+                        <PrivateRoute path="/pedidos" component={dadospedodos}/>
                         <PrivateRoute path="/cadastrocardapio" component={cadastrarCardapio}/>
                         <PrivateRoute path="/cadastroprodutos" component={cadastrarprodutos}/>
                         <Route path="/checkout" component={Checkout}/>

@@ -93,32 +93,6 @@ export default function SimpleDialogDemo(props) {
   };
 
   
-//   let loadImage = function(variable){
-//     var image = new Image();
-//     var url_image = "../../../public/uploads/"+props.img+".png";
-//     image.src = url_image;
-//     if (image.width == 0) {
-//        return <img src={require("../../../public/uploads/"+props.img+".png")} class="img-responsive img" alt="Menu Item"/>;
-//     } else {
-//        return <img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>;
-//     }
-//  }
-
-//  const src1 = "../../../public/uploads/"+props.img+".png"
-
-// function imageexists(){
-//   try{
-//     const src1 = "../../../public/uploads/"+props.img+".png"
-//     return  <img src={require("../../../public/uploads/"+props.img+".png")} onError={(e)=>(this.src={require('')})} class="img-responsive img" alt="Menu Item"/>
-// }
-// catch(err){
-//     //Do whatever you want when the image failed to load here
-//     const src1 = "./noimg.jpg"
-//     return   ()=> <img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>
-// }
-
-// };
-
 
 
 
@@ -141,15 +115,6 @@ return (
                                         </div>
                                     </div>
                                     
-                                                {/* <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                                <img src={Food} class="img-responsive img" alt="Menu Item"/>
-                            </div>
-                            <div class="col-md-7 col-sm-7 col-xs-12">
-                                <div class="content-part-3-right-h4">{props.title}</div>
-                                <div class="price">Preço : <i class="green">R${props.preco}</i></div>
-                                {props.descricao}
-                                <div class="margin_p3"><a href="#!" class="order-now" onClick={props.click}>Pedir agora</a></div>
-                            </div> */}
                         </div>
                     </div>
                     <hr/>

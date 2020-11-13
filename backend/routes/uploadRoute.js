@@ -13,7 +13,7 @@ module.exports = app => {
     
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, './frontend/public/uploads')
+            cb(null, './backend/uploads')
         },
         filename: function (req, file, cb) {
             cb(null, req.params.id+'.png');
@@ -38,7 +38,7 @@ module.exports = app => {
     
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, './frontend/public/uploads/produtos')
+            cb(null, './backend/uploads')
         },
         filename: function (req, file, cb) {
             cb(null, req.params.id+'.png');
@@ -61,7 +61,7 @@ module.exports = app => {
     const fs= require('fs')
     
     app.delete('/api/upload/del/:id', (req,res)=>{
-        fs.unlinkSync("./frontend/public/uploads/"+req.params.id+".png")
+        fs.unlinkSync("./backend/uploads/"+req.params.id+".png")
         res.send("Arquivo deletado").catch(err => res.send(err))}
     )
     

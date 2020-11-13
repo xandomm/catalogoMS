@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 class cadastrarCardapio extends React.Component {
 
   componentDidMount(){
-    fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id).then(
+    fetch('http://35.198.27.37/api/restaurante/'+this.props.id).then(
       res=>{
         if (res.status!==200 && res.status!==201) {
           console.log(res.status)
@@ -103,7 +103,7 @@ handleChange(event){
     var data = { 
       _id:this.props.id,
       nome:this.state.nome,
-      telefone:'55'+this.state.telefone,
+      telefone:this.state.telefone,
       endereco:this.state.endereco,
       valeRefeicao: this.state.valeRefeicao,
       abertura: this.state.abertura,
@@ -134,13 +134,13 @@ handleChange(event){
       if(files !== null){
         const formData = new FormData()
         formData.append('file',files)
-        fetch('http://localhost:5000/api/upload/'+this.props.id,{
+        fetch('http://35.198.27.37/api/upload/'+this.props.id,{
             method:"POST",
             body:formData
         });
     }
 
-      fetch('http://localhost:5000/api/restaurante',{
+      fetch('http://35.198.27.37/api/restaurante',{
         method:"POST",
         headers: {'Content-Type': 'application/json'},
         body:data
@@ -151,14 +151,14 @@ handleChange(event){
     else{
       const formData = new FormData()
       formData.append('file',files)
-      fetch('http://191.252.177.239//api/upload/del/'+this.state.id,{
+      fetch('http://35.198.27.37/api/upload/del/'+this.state.id,{
         method:"DELETE"
         });
-      fetch('http://localhost:5000/api/upload/'+this.props.id,{
+      fetch('http://35.198.27.37/upload/'+this.props.id,{
         method:"POST",
         body:formData
         });
-      fetch('http://localhost:5000/api/restaurante/'+this.props.id,{
+      fetch('http://35.198.27.37/restaurante/'+this.props.id,{
         method:"PUT",
         headers: {'Content-Type': 'application/json'},
         body:data
@@ -229,12 +229,12 @@ handleChange(event){
 
 <div class="form-group col-md-6">
     <label for="inputCity"><h5>Abertura</h5></label>
-    <input name="abertura" type="number" placeholder="Hora a qual abre seu comércio" class="form-control" onChange={this.handleChange} value={this.state.abertura} />
+    <input name="abertura" type="time" placeholder="Hora a qual abre seu comércio" max='24' class="form-control" onChange={this.handleChange} value={this.state.abertura} />
   </div>
   
   <div class="form-group col-md-6">
     <label for="inputCity"><h5>Fechamento</h5></label>
-    <input name="fechamen" type="number" class="form-control" placeholder="Hora a qual fecha seu comércio" id="fechamen" onChange={this.handleChange} value={this.state.fechamen}/>
+    <input name="fechamen" type="time" class="form-control" placeholder="Hora a qual fecha seu comércio" min='00' id="fechamen" onChange={this.handleChange} value={this.state.fechamen}/>
   </div>
 <div class="form-group col-md-6">
     <label for="inputCity"><h5>Preço do Frete</h5></label>
@@ -246,7 +246,7 @@ handleChange(event){
   </div>
   <div class="form-group col-md-6">
     <label for="inputCity"><h5>Número</h5></label>
-    <input name="telefone" type="tel" class="form-control" id="inputCity" onChange={this.handleChange} value={this.state.telefone} placeholder="(__) ______ ____"/>
+    <input name="telefone" type="tel" class="form-control" id="inputCity" onChange={this.handleChange} value={this.state.telefone} mask="55(99)99999-9999" placeholder="55(__) ______ ____"/>
   </div>
   <div class="form-group col-md-4">
     <label for="inputState"><h5>Estado</h5></label>

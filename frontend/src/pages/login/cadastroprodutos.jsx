@@ -15,7 +15,7 @@ var now = new Date().getTime();
 export default class cadastroDeProdutos extends React.Component {
  
   componentDidMount(){
-    fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id).then(
+    fetch('http://35.198.27.37/api/restaurante/'+this.props.id).then(
         res=>{
           if (res.status===404) {
             this.catalogo({
@@ -115,13 +115,13 @@ const formData = new FormData()
 formData.append('file',files)
 console.log(data)
   data= JSON.stringify(data)
-  fetch('http://localhost:5000/api/upload/'+this.state._id,{
+  fetch('http://35.198.27.37/api/upload/'+this.state._id,{
       method:"POST",
       body:formData
   }).then(alert(this.state._id)).catch((err)=>{alert(err)});
 
 
-fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
+fetch('http://35.198.27.37/api/produto/'+this.state.cardapio,{
   method:"POST",
   headers: {'Content-Type': 'application/json'},
   body:data
@@ -141,7 +141,7 @@ window.location.href='/Planos'
   }
   console.log(data)
   data= JSON.stringify(data)
-  fetch('http://localhost:5000/api/produto/'+this.state.cardapio,{
+  fetch('http://35.198.27.37/api/produto/'+this.state.cardapio,{
     method:"POST",
     headers: {'Content-Type': 'application/json'},
     body:data
@@ -162,7 +162,7 @@ window.location.href='/Planos'
 handleSubmit = (e) => {
         
   console.log(JSON.stringify(this.state))
-  axios.post('http://localhost:5000/api/produto/'+this.state.cardapio, JSON.stringify(this.state),{
+  axios.post('http://35.198.27.37/api/produto/'+this.state.cardapio, JSON.stringify(this.state),{
       headers: {
           'Content-Type': 'application/json'
       },

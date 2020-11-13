@@ -26,16 +26,17 @@ class Dashboard extends React.Component {
             <h3 class="card-header info-color white-text text-center py-4" style={{color: "#f2f2f2", backgroundColor: "#0D2840", fontFamily: "'Anton', sans-serif", letterSpacing: "2pt"}}>Área do cliente</h3>
            <br/>
         <h5 className="container">Bem vindo {user.name}</h5>
-           <div className="radioinput1">
-
-         </div>
+           
             <form className="container">
             <div class="form-row">
     <div class="form-group col-md-6">
 
-      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastroprodutos">Cadastrar produto</a>
+      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/pedidos">Visualisar pedidos</a>
     </div>
-    
+    <div class="form-group col-md-6">
+
+<a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastroprodutos">Cadastrar produto</a>
+</div>
   <div class="form-group col-md-6">
   <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastrocardapio">Alterar Cardápio</a>
   </div>
