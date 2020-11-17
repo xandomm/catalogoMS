@@ -5,7 +5,7 @@ import Header from '../../../components/header'
 import Cookies from "js-cookie";
 
 import withState from '../../../utils/withState';
-
+var backendURL= process.env.REACT_APP_API_URL
 class Dashboard extends React.Component {
   componentDidMount() {
     this.props.actions.retrieveUser();

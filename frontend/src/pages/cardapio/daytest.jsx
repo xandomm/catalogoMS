@@ -27,7 +27,7 @@ import data from './data';
 
 
 
-
+var backendURL = process.env.REACT_APP_API_URL
 export default (props)=>{
 
   const [open, setOpen] = React.useState(false)
@@ -43,7 +43,7 @@ const [showProducts, setShowProducts] = useState([])
     const [categorias1, ShowCategorias1]=useState()
     // const []
     useEffect(() => {
-        axios.get('http://35.198.27.37/api/produto/find/'+ props.match.params.url)
+        axios.get(backendURL+'/api/produto/find/'+ props.match.params.url)
             .then(res => {
                 
                 setShowProducts(res.data);
@@ -57,7 +57,7 @@ const [showProducts, setShowProducts] = useState([])
     }, []);
 
     useEffect(() => {
-      axios.get('http://35.198.27.37/api/restaurante/find/'+ props.match.params.url)
+      axios.get(backendURL+'/api/restaurante/find/'+ props.match.params.url)
           .then(res => {
             setDados1(res.data[0])
               setDados(res.data);
@@ -293,7 +293,7 @@ function  Categoriaso(list){
     if(load){
             if(img == undefined){ return ("CARREGANDO...")}
             else{
-             return <img className="LogoCardapio" src={require('./../../../public/uploads/'+dados1._id+'.png')}/>
+             return <img className="LogoCardapio" src={require(backendURL+'/static/'+dados1._id+'.png')}/>
             }
           }else return ("CARREGANDO...")
   }

@@ -19,7 +19,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start --env.API_URL=http://localhost:5000",
+    "start": "react-scripts start --env.REACT_APP_API_URL = https://localhost:5000",
     "build": "react-scripts build --env.API_URL=http://35.198.27.37",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }

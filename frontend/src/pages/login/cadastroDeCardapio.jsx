@@ -6,11 +6,12 @@ import Header from '../../components/header'
 import Button from '@material-ui/core/Button';
 
 
-
+var backendURL= process.env.REACT_APP_API_URL
+const str = 'ÁÉÍÓÚáéíóúâêîôûàèìòùÇç/.,~!@#$%&_-12345';
 class cadastrarCardapio extends React.Component {
 
   componentDidMount(){
-    fetch('http://35.198.27.37/api/restaurante/'+this.props.id).then(
+    fetch(`${backendURL}/api/restaurante/${this.props.id}`).then(
       res=>{
         if (res.status!==200 && res.status!==201) {
           console.log(res.status)
@@ -59,6 +60,7 @@ class cadastrarCardapio extends React.Component {
     this.state={
       _id:"",
       isLoading: true,
+      nome1: '',
       nome:"",
       desc:"",
       endereco:"",
@@ -66,17 +68,20 @@ class cadastrarCardapio extends React.Component {
       telefone:null,
       cidade:"",
       frete:"",
+      abertura: '',
+      fechamen: '',
       categorias1: '',
       categorias: [],
       estado:"",
       img: "",
       valeRefeicao: null,
-      url:"",
+      url: '',
       isUpdate: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
     this.cadastrarProduto = this.cadastrarProduto.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleFileChange(event){
@@ -90,57 +95,63 @@ handleChange(event){
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
+if(name == 'nome' && this.state.nome != ''){this.setState({
+  nome: this.state.nome
+})}else{
     this.setState({
         [name]:value
-    });
+    });}
 
 }
 
   cadastrarProduto(){
-
-        
+    const files = this.state.img;
+// var abertura1 = this.state.abertura.replace(":", ".")
+// var fechamento1 = this.state.fechamen.replace(":", ".")
+// abertura1 = Number(abertura1)
+// fechamento1 = Number(fechamento1)
     var data = { 
-      _id:this.props.id,
-      nome:this.state.nome,
-      telefone:this.state.telefone,
-      endereco:this.state.endereco,
-      valeRefeicao: this.state.valeRefeicao,
-      abertura: this.state.abertura,
-      fechamen: this.state.fechamen,
-      desc:this.state.desc,
-      categorias: this.state.categorias,
-      cidade:this.state.cidade,
-      freteV:this.state.frete,
-      estado:this.state.estado,
-      CEP:this.state.CEP,
-      url:this.state.url,
-      img: this.props.id
-    }
-  
+        _id:this.props.id,
+        nome:this.state.nome,
+        telefone:this.state.telefone,
+        endereco:this.state.endereco,
+        valeRefeicao: this.state.valeRefeicao,
+        abertura: this.state.abertura,
+        fechamen: this.state.fechamen,
+        desc:this.state.desc,
+        categorias: this.state.categorias,
+        cidade:this.state.cidade,
+        freteV:this.state.frete,
+        estado:this.state.estado,
+        CEP:this.state.CEP,
+        url:this.state.url,
+        img: this.props.id
+      }
+    
+
+
 
     data = JSON.stringify(data)
 
-      const files = this.state.img;
-      if(files !== null){
-      const formData = new FormData()
-      formData.append('file',files)
-    console.log(data)
 
+      if(files !== null){
+      var formData = new FormData()
+      formData.append('file',files)
+  
 
 
     if(!this.state.isUpdate){
     
       if(files !== null){
-        const formData = new FormData()
+        formData = new FormData()
         formData.append('file',files)
-        fetch('http://35.198.27.37/api/upload/'+this.props.id,{
+        fetch(`${backendURL}/api/upload/${this.props.id}`,{
             method:"POST",
             body:formData
-        });
+        }).then(alert('text')).catch((e)=>alert('erro: '+e));
     }
 
-      fetch('http://35.198.27.37/api/restaurante',{
+      fetch(`${backendURL}/api/restaurante`,{
         method:"POST",
         headers: {'Content-Type': 'application/json'},
         body:data
@@ -149,39 +160,57 @@ handleChange(event){
     window.location.href='/Planos'
     }
     else{
-      const formData = new FormData()
+      formData = new FormData()
       formData.append('file',files)
-      fetch('http://35.198.27.37/api/upload/del/'+this.state.id,{
+      fetch(`${backendURL}/api/upload/del/${this.props.id}`,{
         method:"DELETE"
         });
-      fetch('http://35.198.27.37/upload/'+this.props.id,{
+      fetch(`${backendURL}/api/upload/${this.props.id}`,{
         method:"POST",
         body:formData
-        });
-      fetch('http://35.198.27.37/restaurante/'+this.props.id,{
+        }).then(alert('imagem postada'))
+        .catch(err => alert(err));
+      fetch(`${backendURL}/api/restaurante/${this.state._id}`,{
         method:"PUT",
         headers: {'Content-Type': 'application/json'},
         body:data
-    }).then(alert('Catálogo alterado com sucesso'))
+    }).then(alert('Catálogo alterado com sucesso'),
+    window.location.href='/dashboard')
     .catch(err => alert(err))
-    window.location.href='/dashboard'
+    
     }
   }}
 
 
-
     render(){
+
         return (
           <div className="" style={{backgroundColor:"#f3f3f3", color: "black"}} >
           <Header/>
           <br/>
           <h3>Cadastrar ou alterar cardapio</h3>
+
+          
           <form className="container">
           <div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="inputEmail4"><h5>Nome do estabelecimento</h5></label>
-    <input name="nome" class="form-control" onChange={this.handleChange} value={this.state.nome}/>
-  </div>
+          <label for="nome1"><h3>Nome do estabelecimento</h3><br/><p>Escolha bem o nome, ele não poderá ser alterado</p></label>
+          <div className="input-group">
+          
+          
+   <input type="name" name="nome1" value={this.state.nome1} onChange={this.handleChange} placeholder="Nome" class="form-control" id="nome1"/>
+
+   <div class="input-group-append" >
+     {console.log(this.state.nome)}
+   <a className="btn btn-outline-info" onClick={()=>{
+     if(this.state.nome=== '' || this.state.nome===undefined){
+      this.setState({ ...this.state, nome: this.state.nome1, url: this.state.nome1.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, '')})
+     }else{
+      this.setState({ ...this.state, nome: this.state.nome})
+     }
+   }}> Nomear catálogo</a>
+ </div>
+</div>
+
   <form>
 <div class="form-group">
   <label for="exampleFormControlFile1"><h5>Logo do estabelecimento</h5></label>
@@ -206,7 +235,7 @@ handleChange(event){
 </div>
 <div class="form-group">
   <label for="inputAddress2"><h5>URL para acesso do cardapio</h5></label>
-  <input name="url" type="text" onChange={this.handleChange} value={this.state.url} class="form-control" id="inputAddress2" placeholder=""/>
+  <input name="url" type="text" value={this.state.url} class="form-control" id="inputAddress2" placeholder=""/>
 </div>
 <div class="form-row">
 <label for="categorias1"><h5>categorias</h5></label>
@@ -219,7 +248,7 @@ handleChange(event){
       <input type="name" name="categorias1" value={this.state.categorias1} onChange={this.handleChange} placeholder="categorias" class="form-control" id="categorias"/>
    
       <div class="input-group-append" >
-        {console.log(this.state)}
+        {console.log(this.state.nome)}
       <a className="btn btn-outline-info" onClick={()=>{this.setState({ ...this.state, categorias: [...this.state.categorias,this.state.categorias1]})}}> Adicionar Categoria</a>
     </div>
   </div>
@@ -246,7 +275,7 @@ handleChange(event){
   </div>
   <div class="form-group col-md-6">
     <label for="inputCity"><h5>Número</h5></label>
-    <input name="telefone" type="tel" class="form-control" id="inputCity" onChange={this.handleChange} value={this.state.telefone} mask="55(99)99999-9999" placeholder="55(__) ______ ____"/>
+    <input name="telefone" type="tel" class="form-control" min="12" id="inputCity" onChange={this.handleChange} value={this.state.telefone} mask="55(99)99999-9999" placeholder="55(__) ______ ____"/>
   </div>
   <div class="form-group col-md-4">
     <label for="inputState"><h5>Estado</h5></label>

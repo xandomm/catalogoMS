@@ -26,7 +26,7 @@ import Produto2 from './produtos2'
 import data from './data';
 import Pagarbutton from './pagarButton'
 
-var backendURL = 'http://35.198.27.37'
+var backendURL = process.env.REACT_APP_API_URL
 
 
 export default (props)=>{
@@ -43,7 +43,7 @@ const [showProducts, setShowProducts] = useState([])
     const [categorias1, ShowCategorias1]=useState()
     // const []
     useEffect(() => {
-        axios.get(backendURL+'/api/produto/find/'+ props.match.params.url)
+        axios.get(`${backendURL}/api/produto/find/${props.match.params.url}`)
             .then(res => {
                 
                 setShowProducts(res.data);
@@ -57,13 +57,12 @@ const [showProducts, setShowProducts] = useState([])
     }, []);
 
     useEffect(() => {
-      axios.get(backendURL+'/api/restaurante/find/'+ props.match.params.url)
+      axios.get(`${backendURL}/api/restaurante/find/${props.match.params.url}`)
           .then(res => {
-            setDados1(res.data[0])
+            setDados1(res.data[0]);
               setDados(res.data);
               setLoad(true);
-              setDados1(res.data[0])
-              ShowCategorias1(dados1.Categorias)
+            
           })
           .catch(err => {
               setError(err.message);
@@ -71,7 +70,7 @@ const [showProducts, setShowProducts] = useState([])
           })
   }, []);
 
-
+console.log(typeof dados)
 
 
 
@@ -191,8 +190,8 @@ var [markOpc, setMarkOpc] = useState([])
   if(props == date.categoria){
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto2 title={date.nome} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
-              setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
+            <Produto2 title={date.nome} preco={date.preco} img={date.img} codigo={date.id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+              setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date.id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>
           );
@@ -266,7 +265,7 @@ function  Categoriaso(list){
 
   function  Categoriasoi(img){
     if(load){
-            if(img == undefined && img==null){ return ("CARREGANDO...")}
+            if(img == undefined || img==null){ return ("CARREGANDO...")}
             else{
              return <img className="LogoCardapio" src={`${backendURL}/static/${dados1._id}.png`}/>
             }
@@ -331,12 +330,11 @@ function  Categoriaso(list){
 <br/>
 <br/>
 {/* <a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a> */}
-{console.log(carrinho)}
+{console.log(`${backendURL}/static/${dados1._id}.png`)}
 {pago}
 <br/>
 <h4 className="radioinput">total: R$ {preco1}</h4>
 
 {abertoFechado1()}
 </div></ProdutosProvider>
-    )
-}
+    )}

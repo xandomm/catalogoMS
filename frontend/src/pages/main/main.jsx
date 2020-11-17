@@ -11,6 +11,7 @@ import ImgPng from '../../image/imagepng.png'
 // #D96704
 // #F28322
 // #F2F2F2
+const  REACT_APP_API_URL  = process.env.REACT_APP_API_URL
 export default (props)=>{
     return(
         <div className="main">
@@ -37,7 +38,8 @@ export default (props)=>{
 <br/>
 <div className="terceiraparte">
                 <h2>INOVE</h2>
-                <p>Assim como você seus clientes procuram conforto e tecnologia, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla eget nisl sit amet interdum. Quisque ipsum nulla, rutrum non maximus sit amet, suscipit a eros. </p>
+                <p>Assim como você seus clientes procuram {console.log(process.env.REACT_APP_API_URL)} conforto e tecnologia, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla eget nisl sit amet interdum. Quisque ipsum nulla, rutrum non maximus sit amet, suscipit a eros. </p>
+    <p>{process.env.API_URL} trrrr</p>
             </div>
             
 <div className="quartaparte">

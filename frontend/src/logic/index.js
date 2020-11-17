@@ -4,7 +4,7 @@
 const { validateEmail } = require('./../utils/validate-email');
 
 const logic = {
-    _url: 'http://35.198.27.37',
+    _url: process.env.REACT_APP_API_URL,
 
     /**
      *
