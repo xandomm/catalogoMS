@@ -25,8 +25,16 @@ export default (props)=>{
             <div className="Primeiraparte">
                 <br/>
                 <div className="escritas">
-                    <h4>Facilite sua vida, impulsione seu negócio</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla eget nisl sit amet interdum. Quisque ipsum nulla, rutrum non maximus sit amet, suscipit a eros. Vestibulum pretium neque vel velit congue aliquet. Donec convallis pulvinar mi commodo consequat. Fusce imperdiet facilisis imperdiet. Curabitur commodo eleifend tempor. Fusce fringilla turpis mauris, sed fermentum dui tristique pulvinar. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</p>
+                    <h4>Uma solução Completa para seu negocio</h4>
+                    <p>Se você está procurando um sistema fácil e totalmente inovador
+para o seu negócio. A Facilita é a escolha certa para bares,
+restaurantes, lanchonetes, pizzarias, Pet Shop, Lojas em geral.
+Você poderá usar nosso sistema em qualquer seguimento que
+trabalhe com produtos físicos.
+No ramo alimentício você poderá criar comandas das mesas com
+QrCode, e seus clientes poderão fazer os pedidos sozinhos, dessa
+forma reduzindo a quantidade de funcionários.
+</p>
                 </div>
         <div className="imagem">
             <img src={ImgPng} />
@@ -38,14 +46,21 @@ export default (props)=>{
 <br/>
 <div className="terceiraparte">
                 <h2>INOVE</h2>
-                <p>Assim como você seus clientes procuram {console.log(process.env.REACT_APP_API_URL)} conforto e tecnologia, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla eget nisl sit amet interdum. Quisque ipsum nulla, rutrum non maximus sit amet, suscipit a eros. </p>
-    <p>{process.env.API_URL} trrrr</p>
+                <p>Tenha total controles dos pedidos que estão sendo recebidos
+no painel de controle no celular ou desktop, e o fluxo de caixa.<br/> Atenda vários clientes ao mesmo tempo, não precisa ficar
+enviado cardápio, promoções disponíveis ou perguntar todas
+as informações para finalizar o pedido, seu cliente enviará tudo
+de uma só vez preenchido e diretamente em seu WhatsApp.</p>
+    
             </div>
             
 <div className="quartaparte">
-            <Lottie/>
+            <Lottie id="lottieF"/>
             <p>
-                Venha participar do avanço tecnológico, a facilita está trabalhando também com sistemas de delivery e planejando um futuro melhor para seu negócio!  
+            Atenda vários clientes ao mesmo tempo, não precisa ficar
+enviado cardápio, promoções disponíveis ou perguntar todas
+as informações para finalizar o pedido, seu cliente enviará tudo
+de uma só vez preenchido e diretamente em seu WhatsApp.
             </p>
 </div>
 

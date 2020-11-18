@@ -4,13 +4,18 @@
     width: 100%;
     overflow-x: hidden;
 }
-
+#lottieF{
+    width: 100px;
+}
 @media(min-width:800px){
     .Primeiraparte{
         display: flex;
         
       
         background-color: #010326;
+    }
+    #lottieF{
+        width: 100px;
     }
     .escritas{
         margin-top: 20px;
@@ -67,7 +72,9 @@
         margin-top: 20px;
     }
     #error404{
-        max-width: 200%;
+      
+            width: 500px;
+        
     }
     .quartaparte{
         display: flex;
