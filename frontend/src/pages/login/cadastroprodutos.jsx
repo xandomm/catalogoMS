@@ -118,16 +118,16 @@ console.log(data)
   fetch(`${backendURL}/api/upload/${this.state._id}`,{
       method:"POST",
       body:formData
-  }).then(alert(this.state._id)).catch((err)=>{alert(err)});
+  }).then(alert('Imagem postada com sucesso')).catch((err)=>{alert(err)});
 
 
 fetch(backendURL+'/api/produto/'+this.state.cardapio,{
   method:"POST",
   headers: {'Content-Type': 'application/json'},
   body:data
-}).then(alert('Produto Cadastrado com sucesso '+data._id))
+}).then(alert('Produto Cadastrado com sucesso '))
 .catch(err => alert(err))
-window.location.href='/Planos'
+window.location.href='/Mensalidade'
 } else {
   var data = { 
     _id: this.state._id ,
@@ -145,9 +145,9 @@ window.location.href='/Planos'
     method:"POST",
     headers: {'Content-Type': 'application/json'},
     body:data
-  }).then(alert('Catálogo Cadastrado com sucesso'+data))
+  }).then(alert('Produto Cadastrado com sucesso'))
   .catch(err => alert(err))
-  window.location.href='/Planos'
+  window.location.href='/Mensalidade'
 
 }
 

@@ -12,11 +12,16 @@
     "aos": "^2.3.4",
     "lottie-react-web": "^2.2.2",
     "lottie-web-react": "^1.0.3",
+    "mercadopago": "^1.5.1",
     "node-sass": "^4.14.1",
+    "qrcode.react": "^1.0.0",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "reactstrap": "^8.7.1",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start --env.REACT_APP_API_URL = https://localhost:5000",

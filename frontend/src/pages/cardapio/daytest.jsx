@@ -293,7 +293,7 @@ function  Categoriaso(list){
     if(load){
             if(img == undefined){ return ("CARREGANDO...")}
             else{
-             return <img className="LogoCardapio" src={require(backendURL+'/static/'+dados1._id+'.png')}/>
+             return <img className="LogoCardapio" src={`${backendURL}/static/${dados1._id}.png`}/>
             }
           }else return ("CARREGANDO...")
   }

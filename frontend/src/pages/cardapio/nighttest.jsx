@@ -190,7 +190,7 @@ var [markOpc, setMarkOpc] = useState([])
   if(props == date.categoria){
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto2 title={date.nome} preco={date.preco} img={date.img} codigo={date.id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+            <Produto2 title={date.nome} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
               setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date.id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>

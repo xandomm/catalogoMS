@@ -52,7 +52,7 @@ require('./backend/routes/restauranteRoute')(app);
  app.use('/api', userRouter);
 // require('./api/routes/pedidoRoutes.js')(app);
 app.use('/static', express.static('./backend/uploads'))
-
+require('./backend/controllers/mensalidadeController')(app);
 //const httpsServer = https.createServer(credentials, app);
 
 app.listen(5000, () => console.log(`Listening on port ${port}`));

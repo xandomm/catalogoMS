@@ -15,7 +15,7 @@ import ProdutosProvider, {useProdutos} from '../../Context/productContext'
 
 
 
-var backendURL = 'http://35.198.27.37'
+var backendURL =process.env.REACT_APP_API_URL
 
 export default function SimpleDialogDemo(props) {
 
@@ -132,7 +132,7 @@ return (
                                     <div class="col-md-7 col-sm-7 col-xs-12  productTest noturno">
                                             <div class="content-part-3-right-h4 noturno">{props.title}</div>
                                             <div class="price noturno">Preço : <i class="preconum"><span class="fa fa-inr"></span>{props.preco}</i></div>
-                                            <p>{props.descricao}</p>
+                                                  <p>{props.descricao} <br/>Codigo: {props.codigo}</p>
                                         <div class="margin_p3"><a class="order-now" onClick={handleClickOpen}>Pedir agora</a>
                                         <SimpleDialog  open={open} onClose={handleClose} opcionais={props.opcionais} nome={props.title} MarcOpcionais={Children.markOpc} click={props.click}/>
                            

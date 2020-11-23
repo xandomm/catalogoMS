@@ -14,6 +14,7 @@ import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
+var backendURL= process.env.REACT_APP_API_URL
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,7 @@ export default class dadospagamento extends React.Component {
 
 
   componentDidMount(){
-    fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id).then(
+    fetch(backendURL+'/api/restaurante/'+this.props.id).then(
       res=>{
         if (res.status===404) {
           this.setState({
@@ -125,7 +126,7 @@ export default class dadospagamento extends React.Component {
 
 
      
-      fetch('http://35.198.27.37:5000/api/restaurante/'+this.props.id,{
+      fetch(backendURL+'/api/restaurante/'+this.props.id,{
         method:"PUT",
         headers: {'Content-Type': 'application/json'},
         body:data
@@ -206,12 +207,12 @@ render(){
       <FormGroup>
         <FormControlLabel
           control={<Switch checked={this.state.frete} color="primary"  onChange={this.handleChange.bind(this)} name="frete" />}
-          label="Frete"
+          label="Taxa de entrega"
         />
         
         <FormControlLabel
           control={<Switch checked={this.state.freteGratis} color="primary"  onChange={this.handleChange.bind(this)} name="freteGratis" />}
-          label="Frete grátis para compras com Valor mínimo"
+          label="Valor do pedido mínimo para entrega Grátis"
         />
 
       </FormGroup>

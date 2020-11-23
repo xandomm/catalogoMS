@@ -9,6 +9,7 @@ var backendURL= process.env.REACT_APP_API_URL
 class Dashboard extends React.Component {
   componentDidMount() {
     this.props.actions.retrieveUser();
+
     
 }
 
@@ -29,25 +30,31 @@ class Dashboard extends React.Component {
            
             <form className="container">
             <div class="form-row">
+            <div class="form-group col-md-6">
+  <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastrocardapio">Alterar catálogo</a>
+  </div>
     <div class="form-group col-md-6">
 
-      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/pedidos">Visualisar pedidos</a>
+      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/pedidos">Acompanhar pedidos</a>
+    </div>
+    <div class="form-group col-md-6">
+
+      <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/delProdutos">deletar produtos</a>
     </div>
     <div class="form-group col-md-6">
 
 <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastroprodutos">Cadastrar produto</a>
 </div>
-  <div class="form-group col-md-6">
-  <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/cadastrocardapio">Alterar Cardápio</a>
-  </div>
+ 
 
 
     <div class="form-group col-md-6">
     <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}} href="/dadospagamento">Alterar dados de pagamento</a>
     </div>
     <div class="form-group col-md-6">
-    <a className="btn col-md-12" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Visualizar cardápio</a>
+    <a className="btn col-md-12" href="/verCardapio" style={{color: "#f2f2f2", backgroundColor: "#0D2840"}}>Visualizar catálogo</a>
     </div>
+  
     <div class="form-group col-md-6">
  
     

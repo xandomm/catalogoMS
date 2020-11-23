@@ -82,8 +82,9 @@ class cadastrarCardapio extends React.Component {
     this.handleFileChange = this.handleFileChange.bind(this);
     this.cadastrarProduto = this.cadastrarProduto.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  
   }
-
+ 
   handleFileChange(event){
     const files = event.target.files[0]
     this.setState({
@@ -188,7 +189,7 @@ if(name == 'nome' && this.state.nome != ''){this.setState({
           <div className="" style={{backgroundColor:"#f3f3f3", color: "black"}} >
           <Header/>
           <br/>
-          <h3>Cadastrar ou alterar cardapio</h3>
+          <h3>Cadastrar ou alterar catálogo</h3>
 
           
           <form className="container">
@@ -230,17 +231,20 @@ if(name == 'nome' && this.state.nome != ''){this.setState({
   <input name="endereco" onChange={this.handleChange} value={this.state.endereco} type="text" class="form-control" id="inputAddress" placeholder="Rua e Numero"/>
 </div>
 <div class="form-group">
-  <label for="inputAddress2"><h5>Descrição do restaurante</h5></label>
+  <label for="inputAddress2"><h5>Descrição do estabelecimento</h5></label>
   <input name="desc" type="text" onChange={this.handleChange} value={this.state.desc} class="form-control" id="inputAddress2" placeholder=""/>
 </div>
 <div class="form-group">
-  <label for="inputAddress2"><h5>URL para acesso do cardapio</h5></label>
+  <label for="inputAddress2"><h5>URL para acesso do Catálogo</h5></label>
   <input name="url" type="text" value={this.state.url} class="form-control" id="inputAddress2" placeholder=""/>
 </div>
 <div class="form-row">
 <label for="categorias1"><h5>categorias</h5></label>
 <ul>
-        {this.state.categorias.length!==0? (this.state.categorias.map((eee)=>{return(<li>{eee}</li>)})):(<li>Ainda não existe nenhuma categoria</li>)}
+        {this.state.categorias.length!==0? (this.state.categorias.map((eee)=>{
+          return(<li className='justify-content-between' key={eee}>{eee} <a style={{color: 'black'}} onClick={()=>{ this.setState({...this.state, categorias: this.state.categorias.filter((categorias) => categorias !== eee)})}}>x</a></li>)}))
+          
+          :(<li>Ainda não existe nenhuma categoria</li>)}
 </ul>
 <div className="input-group">
 

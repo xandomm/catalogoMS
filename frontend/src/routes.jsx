@@ -17,7 +17,9 @@ import daytest from './pages/cardapio/daytest';
 import withState from './utils/withState';
 import nighttest from './pages/cardapio/nighttest';
 import dadospedodos from './pages/login/dashboard/dadospedidos'
-
+import Mensalidade from './pages/pagamento/Mensalidade';
+import verCardapio from './pages/login/dashboard/verCardapio'
+import delProdutos from './pages/login/dashboard/delProdutos'
 class App extends Component {
     componentDidMount() {
         this.unlisten = this.props.history.listen((location, action) => {
@@ -40,6 +42,7 @@ class App extends Component {
             <div className="App">
             
                 <Switch>
+                        <PrivateRoute path='/Mensalidade' component={Mensalidade}/>
                         <Route exact path="/" component={main} />
                         <PrivateRoute path="/dashboard" component={Dashboard} />
                         <Route path="/cardapio" exact component={cardapio}/>
@@ -47,8 +50,10 @@ class App extends Component {
                         <Route path="/d/:url" component={daytest}/>
                         <Route path="/n/:url" component={nighttest}/>
                         <PrivateRoute path="/pedidos" component={dadospedodos}/>
+                        <PrivateRoute path='/delProdutos' component={delProdutos} />
                         <PrivateRoute path="/cadastrocardapio" component={cadastrarCardapio}/>
                         <PrivateRoute path="/cadastroprodutos" component={cadastrarprodutos}/>
+                        <PrivateRoute path="/verCardapio" component={verCardapio}/>
                         <Route path="/checkout" component={Checkout}/>
                      
                         <PrivateRoute path="/dadospagamento" component={dadospag}/>
