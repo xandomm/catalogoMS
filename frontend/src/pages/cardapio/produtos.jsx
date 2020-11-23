@@ -12,6 +12,7 @@ import imageExists from 'image-exists';
 
 import ProdutosProvider, {useProdutos} from '../../Context/productContext'
 
+var backendURL= process.env.REACT_APP_API_URL
 const emails = ['username@gmail.com', 'user02@gmail.com'];
 
 
@@ -101,7 +102,7 @@ return (
  <div class="col-md-12 col-sm-12 col-xs-12 productTest">
                         <div class="row content-part-3-inner">
                             <div class="col-md-5 col-sm-5 col-xs-12" align="center">
-                 {props.img == ""?  (<img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>):(<img src={require("../../../public/uploads/"+props.img+".png")}  class="img-responsive img" alt="Menu Item"/>)}
+                 {props.img == ""?  (<img src={require("./noimg.jpg")} class="img-responsive img" alt="Menu Item"/>):(<img src={ backendURL+"/static/"+props.img+".png"}  class="img-responsive img" alt="Menu Item"/>)}
                               
                       
                             </div>

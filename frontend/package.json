@@ -24,8 +24,8 @@
     "styled-components": "^5.2.1"
   },
   "scripts": {
-    "start": "react-scripts start --env.REACT_APP_API_URL = https://localhost:5000",
-    "build": "react-scripts build --env.API_URL=http://35.198.27.37",
+    "start": "react-scripts start ",
+    "build": "react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

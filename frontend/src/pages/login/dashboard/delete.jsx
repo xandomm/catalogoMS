@@ -10,10 +10,10 @@ class Delete extends React.Component {
     deletar(){
         var res = window.confirm("Tem certeza que deseja deletar o produto de ID " +this.props.id)
         if (res === true) {
-            fetch('http://localhost:5000/api/produto/'+this.props.id,{
+            fetch(backendURL+'/api/produto/'+this.props.id,{
                 method: "DELETE"
             })
-            fetch('http://localhost:5000/api/upload/del/'+this.props.id,{
+            fetch(backendURL+'/api/upload/del/'+this.props.id,{
                 method:"DELETE"
             })
             alert('Produto deletado')
