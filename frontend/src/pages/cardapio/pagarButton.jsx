@@ -7,9 +7,10 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios'
+var backendURL = process.env.REACT_APP_API_URL
  function pagarButton(props) {
   var txt;
-
+  
   const handleClickOpen = () => {
     props.setOpen(true);
   };
@@ -24,13 +25,16 @@ import axios from 'axios'
     
     const pedido2 = JSON.stringify(pedido1)
     console.log(pedido1.cardapio)
-        axios.post('http://35.198.27.37/api/pedido', pedido1).then(window.alert("Sucesso")).catch(e=>window.alert(e));
+        axios.post(backendURL+'/api/pedido', pedido1).then(window.alert("Sucesso")).catch(e=>window.alert(e));
   }
   const handleClose = () => {
     props.setOpen(false);
   };
   const onChange1 = (e)=>{
     props.setTxt(e.target.value)
+  }
+  const onChange2 = (e)=>{
+    props.setEnd(e.target.value)
   }
   return (<div>
      <a className="btn finalizar md-col-12"  onClick={handleClickOpen}>
@@ -42,7 +46,7 @@ import axios from 'axios'
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Realizar pedido?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
           {props.carrinho.map((aos)=>{
@@ -52,7 +56,7 @@ import axios from 'axios'
               {aos.nome} {aos.opcionais.map((o)=>{
                
            
-             return(<div  key={`${o.name}_{o.preco}`}>{o.name} R$ {o.preco} +</div>)
+             return(<div  key={`${o.name}_{o.preco}`}>{o.name} R$o {o.preco} +</div>)
              })}
             <span class=" ">R$ {aos.preco}</span></li>
             )
@@ -68,6 +72,16 @@ import axios from 'axios'
           value={props.txt}
           onChange={onChange1}
         />
+         <TextField
+          id="filled-multiline-static"
+          label="Endereço"
+          multiline
+          rows={4}
+          defaultValue="Sem Observações"
+          variant="filled"
+          value={props.end}
+          onChange={onChange2}
+        />
         {console.log(props.url_backend)}
           </DialogContentText>
         </DialogContent>
@@ -75,17 +89,17 @@ import axios from 'axios'
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
+          {console.log}
           <Button onClick={handleClose} color="primary" >
-          <a onClick={Pedir} className="btn finalizar md-col-12" href={"https://api.whatsapp.com/send?phone="+props.numero+"&text=%20*PEDIDO%20FACILITA%20AI*%0a"+props.carrinho.map((elis)=>{
+          <a onClick={Pedir} className="btn finalizar md-col-12" href={'https://api.whatsapp.com/send?phone='+props.numero+'&text=%20*PEDIDO%20FACILITA%20AI*%0a'+props.carrinho.map((el)=>{
                   return(
                     //{nome: date.title,preco: date.preco,codigo: date.codigo, opcionais: markOpc}
-                   ` --${elis.nome} %20 ${elis.preco}%0a` +elis.opcionais.map((k)=>{return(`OPCIONAIS%20 ${k.name} %20 ${k.preco} %20`)})+`%0a${props.Check}%0a${props.txt}`
-                  )})  
-                  }> Realizar Pedido</a>
+            ' --'+el.nome+' %20 '+el.preco+'%0a' +el.opcionais.map((k)=>'OPCIONAIS%20 '+k.name+' %20 R$'+k.preco+' %20')+'%0a'+props.Check+'%0a'+props.txt+'%0a'
+                  )})+'%0a'+props.end +'%0a' }> Realizar Pedido</a>
           </Button>
         </DialogActions>
       </Dialog>
-      {console.log(props.url_backend)} 
+      {console.log(props.carrinho)} 
                       
     </div>)
 }

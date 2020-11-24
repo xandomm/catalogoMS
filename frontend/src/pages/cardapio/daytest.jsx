@@ -32,12 +32,15 @@ export default (props)=>{
 
   const [open, setOpen] = React.useState(false)
   const [txt, setTxt] = useState('')
+  const [txt1, setTxt1] = useState('')
     const [load, setLoad] = useState(false);
     const [error, setError] = useState('');
 
 const [showProducts, setShowProducts] = useState([])
 
-
+var {carrinho, setCarrinho} = useProdutos()
+var [carrinhotxt, useCarrinhotxt] = useState([])
+var preco1 =0;
     const [dados, setDados]=useState([])
     const [dados1, setDados1]=useState({ })
     const [categorias1, ShowCategorias1]=useState()
@@ -101,7 +104,11 @@ const [showProducts, setShowProducts] = useState([])
 
 
 
+var [Check, setCheck] = useState({})
+var handleChange1=(event)=> {
 
+  setCheck(event.target.value )
+}
 
 
 
@@ -124,7 +131,7 @@ const [showProducts, setShowProducts] = useState([])
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                <Pagarbutton  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                <Pagarbutton end={txt1} setEnd={setTxt1} carrinho={carrinho} preco={preco1} Check={Check} carrinho={carrinho} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {
@@ -133,9 +140,7 @@ const [showProducts, setShowProducts] = useState([])
               )
   
           }}
-        var {carrinho, setCarrinho} = useProdutos()
-        var [carrinhotxt, useCarrinhotxt] = useState([])
-        var preco1 =0;
+     
         var pago = carrinho.map((aos)=>{
             preco1= preco1+ parseFloat(aos.preco)
           return(
@@ -230,7 +235,7 @@ var [markOpc, setMarkOpc] = useState([])
 
 
 
-      var [Check, setCheck] = useState({})
+      var [Check, setCheck] = useState('Entregar')
       var handleChange1=(event)=> {
       
         setCheck(event.target.value )
@@ -317,12 +322,13 @@ function  Categoriaso(list){
             <div class=" descricaorestaurante">
 {/* descrição do lugar */}
     
-    <div class="col-md-5 col-sm-6 col-xs-12">
+    <div class="col-md-5 col-sm-6 col-xs-12 ">
     
    <div class="content-part-1-left-h3">{dados1.nome}</div>
         <div class="content-part-1-left-p">
         {dados1.desc}
-        
+        <br/>
+   <p >{dados1.endereco} CEP: {dados1.CEP}, {dados1.cidade}</p>
         </div>
         
     </div>
@@ -334,29 +340,31 @@ function  Categoriaso(list){
 
 
 {Categoriaso(dados1.categorias)}
-<div className="radioinput1">
+<form>
+<div className="radioinput">
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"/>
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Retirar no local" checked={Check==="Retirar no local"} onClick={handleChange1} name="local"/>
   <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Entregar" checked={Check=== "Entregar"} onClick={handleChange1} name="local1"/>
   <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"/>
+ 
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Comer no local" checked={Check=="Comer no local"} onClick={handleChange1} name="local2"/>
   <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
 </div>
 
-
 </div>
+</form>
 <br/>
 <br/>
 {/* <a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a> */}
 
 {pago}
 <br/>
-<h4 className="radioinput">total: R$ {preco1}</h4>
+<h4 className="radioinput" style={{color: 'black'}}>total: R$ {preco1}</h4>
 
 {abertoFechado1()}
 </div></ProdutosProvider>

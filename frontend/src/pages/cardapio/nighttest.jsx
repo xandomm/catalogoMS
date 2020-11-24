@@ -34,7 +34,7 @@ export default (props)=>{
   const [txt, setTxt] = useState('')
     const [load, setLoad] = useState(false);
     const [error, setError] = useState('');
-
+    const [txt1, setTxt1] = useState('')
 const [showProducts, setShowProducts] = useState([])
 
 
@@ -119,7 +119,7 @@ var handleChange1=(event)=> {
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                  <Pagarbutton  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                  <Pagarbutton  end={txt1} setEnd={setTxt1}  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {
@@ -225,7 +225,7 @@ var [markOpc, setMarkOpc] = useState([])
 
 
 
-      var [Check, setCheck] = useState({})
+      var [Check, setCheck] = useState('Entregar')
       var handleChange1=(event)=> {
       
         setCheck(event.target.value )
@@ -295,7 +295,8 @@ function  Categoriaso(list){
     
    <div class="content-part-1-left-h3">{dados1.nome}</div>
         <div class="content-part-1-left-p">
-        {dados1.desc}
+        {dados1.desc} <br/>
+   <p >{dados1.endereco} CEP: {dados1.CEP}, {dados1.cidade}</p>
         
         </div>
         

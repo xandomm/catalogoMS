@@ -109,7 +109,7 @@ return (
                                     <div class="col-md-7 col-sm-7 col-xs-12 productTest">
                                             <div class="content-part-3-right-h4 ">{props.title}</div>
                                             <div class="price">Preço : <i class="green"><span class="fa fa-inr"></span>{props.preco}</i></div>
-                                            <p>{props.descricao}</p>
+                                            <p>{props.descricao}  <br/>Codigo: {props.codigo}</p>
                                         <div class="margin_p3"><a class="order-now" onClick={handleClickOpen}>Pedir agora</a>
                                         <SimpleDialog  open={open} onClose={handleClose} opcionais={props.opcionais} nome={props.title} MarcOpcionais={Children.markOpc} click={props.click}/>
                            
