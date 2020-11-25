@@ -109,7 +109,7 @@ var handleChange1=(event)=> {
 
   setCheck(event.target.value )
 }
-
+var [Check1, setCheck1] = useState({})
 
 
     var d = new Date();
@@ -131,7 +131,7 @@ var handleChange1=(event)=> {
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                <Pagarbutton end={txt1} setEnd={setTxt1} carrinho={carrinho} preco={preco1} Check={Check} carrinho={carrinho} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                <Pagarbutton end={txt1} pag={Check1} setPag={setCheck1} setEnd={setTxt1} carrinho={carrinho} total={preco1} Check={Check} carrinho={carrinho} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {
@@ -200,7 +200,7 @@ var [markOpc, setMarkOpc] = useState([])
   if(props == date.categoria){
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.nome} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+            <Produto title={date.nome} total={preco1} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
               setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>

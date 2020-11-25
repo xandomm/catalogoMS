@@ -28,7 +28,17 @@
     background-color: #BFB0B0;
     color: #383B40;
 }
-
+.finalizar1{
+    background-color: #D9AA1E;
+    color: #383B40;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    position: fixed;
+	float: bottom;
+	bottom: 15px;
+	right: 15px;
+	z-index: 100;
+}
 .finalizar{
     background-color: #D9AA1E;
     color: #383B40;

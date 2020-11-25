@@ -119,7 +119,7 @@ var handleChange1=(event)=> {
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                  <Pagarbutton  end={txt1} setEnd={setTxt1}  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                  <Pagarbutton total={preco1}   pag={Check1} setPag={setCheck1} end={txt1} setEnd={setTxt1}  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {
@@ -128,6 +128,7 @@ var handleChange1=(event)=> {
               )
   
           }}
+          var [Check1, setCheck1] = useState({})
         var {carrinho, setCarrinho} = useProdutos()
         var [carrinhotxt, useCarrinhotxt] = useState([])
         var preco1 =0;
