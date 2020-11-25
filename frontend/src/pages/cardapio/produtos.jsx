@@ -112,7 +112,7 @@ return (
                                             <p>{props.descricao}  <br/>Codigo: {props.codigo}</p>
                                         <div class="margin_p3"><a class="order-now" onClick={handleClickOpen}>Pedir agora</a>
                                         <SimpleDialog  open={open} onClose={handleClose} opcionais={props.opcionais} nome={props.title} MarcOpcionais={Children.markOpc} click={props.click}/>
-                           
+                           {console.log(props.descricao)}
                                         </div>
                                     </div>
                                     

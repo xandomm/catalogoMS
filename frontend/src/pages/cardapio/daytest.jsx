@@ -166,9 +166,10 @@ var [markOpc, setMarkOpc] = useState([])
   const clic = props.click
 
         const lis = showProducts.map((date)=>{
+          
           return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.nome} preco={date.preco} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+            <Produto title={date.nome} preco={date.preco} descricao={date.descricao} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
               setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>
@@ -198,9 +199,10 @@ var [markOpc, setMarkOpc] = useState([])
                      
 {showProducts.map((date)=>{
   if(props == date.categoria){
-          return(
+    console.log(date.descricao)   
+    return(
             //Concertando codigos, tem de colocar a imagem no objeto
-            <Produto title={date.nome} total={preco1} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
+            <Produto title={date.nome} descricao={date.descricao} total={preco1} preco={date.preco} img={date.img} codigo={date._id} opcionais={date.opcionais} opc={opc} clic={clic} markOpc={markOpc} setMarkOpc={setMarkOpc} selOpcionais={Children.MarcOpcionais} click={(opcionais)=>{
               setCarrinho([...carrinho, {nome: date.nome,preco: date.preco,codigo: date._id,opcionais: markOpc}]); setMarkOpc([]);
              
             }}/>
