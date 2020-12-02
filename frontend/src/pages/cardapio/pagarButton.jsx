@@ -30,6 +30,11 @@ var backendURL = process.env.REACT_APP_API_URL
   const handleClose = () => {
     props.setOpen(false);
   };
+  var handleChange11=(event)=> {
+      
+    props.setCheck(event.target.value )
+  }
+
   var handleChange1=(event)=> {
       
     props.setPag(event.target.value )
@@ -91,10 +96,7 @@ var backendURL = process.env.REACT_APP_API_URL
           value={props.end}
           onChange={onChange2}
         />
-        {console.log(props.url_backend)}
-          </DialogContentText>
-        </DialogContent>
-        <form>
+          <form  className="formFinal">
         <div className="radioinput col-md-12 d-flex justify-content-between">
 <div class="form-check form-check-inline p-2">
   <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Cartão" checked={props.pag==="Cartão"} onClick={handleChange1} name="local"/>
@@ -107,7 +109,28 @@ var backendURL = process.env.REACT_APP_API_URL
 
 
 </div>
+
+<div className="radioinput md-12">
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Retirar no local" checked={props.Check==="Retirar no local"} onClick={handleChange11} name="local"/>
+  <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Entregar" checked={props.Check=== "Entregar"} onClick={handleChange11} name="local1"/>
+  <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
+</div>
+<div class="form-check form-check-inline">
+ 
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Comer no local" checked={props.Check=="Comer no local"} onClick={handleChange11} name="local2"/>
+  <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
+</div>
+
+</div>
 </form>
+        {console.log(props.url_backend)}
+          </DialogContentText>
+        </DialogContent>
+      
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancelar

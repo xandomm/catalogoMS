@@ -119,7 +119,7 @@ var handleChange1=(event)=> {
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                  <Pagarbutton total={preco1}   pag={Check1} setPag={setCheck1} end={txt1} setEnd={setTxt1}  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                  <Pagarbutton total={preco1} setCheck={setCheck}  pag={Check1} setPag={setCheck1} end={txt1} setEnd={setTxt1}  carrinho={carrinho} preco={preco1} Check={Check} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {
@@ -311,24 +311,7 @@ function  Categoriaso(list){
 
 {Categoriaso(dados1.categorias)}
 
-<form>
-<div className="radioinput">
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Retirar no local" checked={Check==="Retirar no local"} onClick={handleChange1} name="local"/>
-  <label class="form-check-label" for="inlineCheckbox1">Retirar no local</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Entregar" checked={Check=== "Entregar"} onClick={handleChange1} name="local1"/>
-  <label class="form-check-label" for="inlineCheckbox2">Entregar</label>
-</div>
-<div class="form-check form-check-inline">
- 
-  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Comer no local" checked={Check=="Comer no local"} onClick={handleChange1} name="local2"/>
-  <label class="form-check-label" for="inlineCheckbox2">Comer no local</label>
-</div>
 
-</div>
-</form>
 <br/>
 <br/>
 {/* <a href={'https://api.whatsapp.com/send?phone=5534998269655&text='+pago}> FACA O PEDIDO</a> */}

@@ -71,8 +71,8 @@ de uma só vez preenchido e diretamente em seu WhatsApp.
               
               <div class="card-body card container sobreprecos"  data-aos="fade-zoom-in">
               <strong><p>Por apenas</p></strong>
-                <h2 class="mt-0 mb-1">R$9,90</h2>
-                <strong><p>Mensal</p></strong><p>Você constrói seu cardápio virtual por R$9,90 mensal, e depois só paga pelos pedidos que foram feitos <strong>UTILIZANDO A PLATAFORMA!</strong></p>
+                <h2 class="mt-0 mb-1">R$39,90</h2>
+                <strong><p>Mensal</p></strong><p>Você constrói seu cardápio virtual por R$39,90 mensal, e depois só paga pelos pedidos que foram feitos <strong>UTILIZANDO A PLATAFORMA!</strong></p>
                 <a href="/login" class="btn btn-primary" >Quero começar agora!</a>
               </div>
                 

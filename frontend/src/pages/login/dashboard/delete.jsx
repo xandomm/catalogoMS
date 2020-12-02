@@ -17,7 +17,7 @@ class Delete extends React.Component {
                 method:"DELETE"
             })
             alert('Produto deletado')
-            window.location.href = 'deletarProdutos' 
+            window.location.href = 'delProdutos' 
         }
 
         else {
