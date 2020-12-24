@@ -21,6 +21,7 @@ const restauranteSchema = mongoose.Schema({
     compraMinV: Number,
     categorias: Array,
     retirar: Boolean,
+    opcionais: Array,
     desc: String,
     cidade: String,
     token: String,

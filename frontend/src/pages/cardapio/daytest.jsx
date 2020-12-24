@@ -131,7 +131,7 @@ var [Check1, setCheck1] = useState({})
         function abertoFechado1(){
           if(now <= dados1.fechamen  && now >= dados1.abertura ){
               return(
-                <Pagarbutton setCheck={setCheck} end={txt1} pag={Check1} setPag={setCheck1} setEnd={setTxt1} carrinho={carrinho} total={preco1} Check={Check} carrinho={carrinho} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
+                <Pagarbutton setCheck={setCheck} frete={dados1.freteV} end={txt1} pag={Check1} setPag={setCheck1} setEnd={setTxt1} carrinho={carrinho} total={preco1} Check={Check} carrinho={carrinho} open={open} setOpen={setOpen} txt={txt} setTxt={setTxt} cardapio={dados1.url} numero={dados1.telefone}/>
               )
           
           }else {

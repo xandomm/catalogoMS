@@ -2,13 +2,24 @@ import React,{useState} from 'react';
 
 import Header from '../../components/header'
 import './cad.css'
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-
+import { makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import Paper from '@material-ui/core/Paper';
+import TagFacesIcon from '@material-ui/icons/TagFaces';
 import axios from 'axios'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    listStyle: 'none',
+    padding: theme.spacing(0.5),
+    margin: 0,
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+  },
+}));
 
 var now = new Date().getTime();
 var backendURL= process.env.REACT_APP_API_URL
@@ -32,6 +43,7 @@ export default class cadastroDeProdutos extends React.Component {
               cardapio: dados.url,
               categorias: dados.categorias,
               categoria: dados.categorias[0],
+              opcionais: dados.opcionais,
               isUpdate: false
             })}
             )
@@ -50,16 +62,18 @@ export default class cadastroDeProdutos extends React.Component {
       preco: '',
       desc: '',
       nomeopc1: '',
-      precopc1: '',
+      precoopc1: '',
       cardapio: '',
       categoria:'',
       categorias: [],
-      opcionais: []
+      opcionais: [],
+      showOpc: []
     }
     this.handleFileChange = this.handleFileChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleChangeO = this.handleChangeO.bind(this);
     this.cadastrarProduto = this.cadastrarProduto.bind(this);
+    this.cadastraropc = this.cadastraropc.bind(this)
   
   }
   handleFileChange(event){
@@ -76,23 +90,15 @@ export default class cadastroDeProdutos extends React.Component {
 handleChangeO(event) {
     this.setState({ ...this.state, opcionais: [{ [event.target.name]: event.target.value}] })
 }
+cadastraropc(){
 
+axios.put(`${backendURL}/api/restaurante/${this.props.id}`, {opcionais: this.state.opcionais}).then(
+  window.alert('sucesso')
+)
+    
+}
 cadastrarProduto(){
 
-
-
-
-//     _id: Number,
-//     nome: String,
-//     preco: Number,
-//     img: String,
-//     descricao: String,
-//     cardapio: String
-
-// }, {
-//     timestamps: true,
-//     collection: 'Produto'
-// });
 
 
 
@@ -230,7 +236,12 @@ handleSubmit = (e) => {
 </select>
   
     <h5>Opcionais</h5>
-    
+    {
+  this.state.opcionais.map((e)=>{
+  return(<button type="button" class="btn btn-outline-primary" onClick={()=>this.setState({...this.state, showOpc
+    : [ ...this.state.showOpc, {nomeopc: e.nomeopc, precoopc: e.precoopc }]})} value={e.nomeopc}>{e.nomeopc}</button>)
+  })
+    }
     <table class="table table-dark">
   <thead>
     <tr>
@@ -244,7 +255,7 @@ handleSubmit = (e) => {
 
 
   {
-    this.state.opcionais.map(item=>{ return(<tr>
+    this.state.showOpc.map(item=>{ return(<tr>
      
     <td>{item.nomeopc}</td>
     <td>{item.precoopc}</td>
@@ -267,12 +278,12 @@ handleSubmit = (e) => {
       <input type="number" name="precoopc1" value={this.state.precoopc1} onChange={this.handleChange} placeholder="Preço do opcional" min="0"  class="form-control" id="inputEmail4"/>
       <div class="input-group-append" >
         {console.log(this.state)}
-      <a className="btn btn-outline-info" onClick={()=>{this.setState({ ...this.state, opcionais: [...this.state.opcionais,{ nomeopc: this.state.nomeopc1, precoopc: this.state.precoopc1}]})}}> Adicionar Opcionais</a>
+      <a className="btn btn-outline-info" onClick={()=>{this.setState({ ...this.state, opcionais: [...this.state.opcionais,{ nomeopc: this.state.nomeopc1, precoopc: this.state.precoopc1}], showOpc: [...this.state.showOpc,{ nomeopc: this.state.nomeopc1, precoopc: this.state.precoopc1}]})}}> <a onClick={this.cadastraropc} >Adicionar Opcionais</a> </a>
     </div>
   </div>
     <div className="radioinput1">
     <div class="form-check form-check-inline">
-  <a href="/cadastroprodutos" class="btn btn-primary" onClick={this.cadastrarProduto}>cadastrar outro produto</a></div>
+ <a href="/cadastroprodutos" class="btn btn-primary" onClick={this.cadastrarProduto}>cadastrar outro produto</a></div>
 
 
   <div class="form-check form-check-inline">
@@ -284,6 +295,7 @@ handleSubmit = (e) => {
 </div>
         </div>
         )
+      
         }
-  
+
       }
