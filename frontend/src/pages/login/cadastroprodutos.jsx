@@ -93,10 +93,10 @@ handleChangeO(event) {
 cadastraropc(){
 
 axios.put(`${backendURL}/api/restaurante/${this.props.id}`, {opcionais: this.state.opcionais}).then(
-  window.alert('sucesso')
-)
-    
-}
+  window.alert('sucesso'), 
+  console.log(this.state.opcionais)
+)  
+};
 cadastrarProduto(){
 
 
@@ -141,7 +141,7 @@ window.location.href='/Mensalidade'
     preco: this.state.preco,
     desc: this.state.desc,
     categoria: this.state.categoria,
-    opcionais: this.state.opcionais,
+    opcionais: this.state.showOpc,
     cardapio: this.state.cardapio,
     img: ''
   }
